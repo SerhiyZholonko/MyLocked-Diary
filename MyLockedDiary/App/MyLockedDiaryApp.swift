@@ -15,6 +15,10 @@ struct MyLockedDiaryApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .modelContainer(for: Note.self)
         }
     }
+        init() {
+            print("URL Data: ", URL.applicationSupportDirectory.path(percentEncoded: false) )
+        }
 }

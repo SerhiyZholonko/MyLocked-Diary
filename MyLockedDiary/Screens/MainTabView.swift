@@ -20,11 +20,10 @@ struct MainTabView: View {
                 CalendarView()
                     .environmentObject(viewModel)
                     .tag("1")
-                
                 AddNewNoteView()
+                    .modelContainer(for: Note.self)
                     .environmentObject(viewModel)
                     .tag("2")
-                
                 ProfileView()
                     .environmentObject(viewModel)
                     .tag("3")
@@ -63,14 +62,7 @@ struct MainTabView: View {
                             .foregroundColor(viewModel.getTintColor())
                             .frame(width: 50, height: 50)
                         
-                        Image(systemName: "plus.circle.fill")
-                            .renderingMode(.template)
-                            .resizable()
-                            .frame(width: 25, height: 25)
-                            .background(Color.white)
-                            .clipShape(Circle())
-                            .foregroundColor(viewModel.getSelectedColor())
-                            .offset(x: 10, y: 10)
+                        
                     }
                 }
                 .buttonStyle(PlainButtonStyle())
@@ -105,7 +97,7 @@ struct MainTabView: View {
             }
             .padding()
             .frame(maxWidth: .infinity)
-            .frame(height: 100)
+
         }
     }
 }
@@ -114,4 +106,6 @@ struct MainTabView: View {
 
 #Preview {
     MainTabView()
+        .modelContainer(for: Note.self, inMemory: true)
+
 }

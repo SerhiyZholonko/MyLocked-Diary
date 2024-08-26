@@ -9,9 +9,13 @@
 /* Begin PBXBuildFile section */
 		18094FD42C5DECF20057CB02 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18094FD32C5DECF20057CB02 /* View.swift */; };
 		18094FD62C5E5D1A0057CB02 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18094FD52C5E5D1A0057CB02 /* Color.swift */; };
+		180B8C4A2C70C44F0054F1CA /* AddingNewNoteScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180B8C492C70C44F0054F1CA /* AddingNewNoteScreen.swift */; };
 		181C79AA2C5F6DD6003BF4F4 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181C79A92C5F6DD6003BF4F4 /* MainTabView.swift */; };
 		181C79AE2C5FA42C003BF4F4 /* MainTabViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181C79AD2C5FA42C003BF4F4 /* MainTabViewViewModel.swift */; };
 		181C79B02C5FBAD8003BF4F4 /* AddNewNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181C79AF2C5FBAD8003BF4F4 /* AddNewNoteView.swift */; };
+		18B21A482C724DC70031139C /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B21A472C724DC70031139C /* NoteView.swift */; };
+		18BA3E9D2C624EEB00C2E61C /* TransparentTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BA3E9C2C624EEB00C2E61C /* TransparentTextEditor.swift */; };
+		18BA3E9F2C6252AA00C2E61C /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BA3E9E2C6252AA00C2E61C /* Note.swift */; };
 		18D915F32C57F5BE00796C37 /* MyLockedDiaryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D915F22C57F5BE00796C37 /* MyLockedDiaryApp.swift */; };
 		18D915F52C57F5BE00796C37 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D915F42C57F5BE00796C37 /* ContentView.swift */; };
 		18D915F92C57F5C000796C37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18D915F82C57F5C000796C37 /* Assets.xcassets */; };
@@ -45,9 +49,13 @@
 /* Begin PBXFileReference section */
 		18094FD32C5DECF20057CB02 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		18094FD52C5E5D1A0057CB02 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		180B8C492C70C44F0054F1CA /* AddingNewNoteScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingNewNoteScreen.swift; sourceTree = "<group>"; };
 		181C79A92C5F6DD6003BF4F4 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		181C79AD2C5FA42C003BF4F4 /* MainTabViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewViewModel.swift; sourceTree = "<group>"; };
 		181C79AF2C5FBAD8003BF4F4 /* AddNewNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewNoteView.swift; sourceTree = "<group>"; };
+		18B21A472C724DC70031139C /* NoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
+		18BA3E9C2C624EEB00C2E61C /* TransparentTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentTextEditor.swift; sourceTree = "<group>"; };
+		18BA3E9E2C6252AA00C2E61C /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		18D915EF2C57F5BE00796C37 /* MyLockedDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyLockedDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D915F22C57F5BE00796C37 /* MyLockedDiaryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLockedDiaryApp.swift; sourceTree = "<group>"; };
 		18D915F42C57F5BE00796C37 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -127,6 +135,23 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		18B21A462C724DB70031139C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				18B21A472C724DC70031139C /* NoteView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		18BA3E9B2C624EDD00C2E61C /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				18B21A462C724DB70031139C /* Views */,
+				18BA3E9C2C624EEB00C2E61C /* TransparentTextEditor.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
 		18D915E62C57F5BE00796C37 = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +175,7 @@
 		18D915F12C57F5BE00796C37 /* MyLockedDiary */ = {
 			isa = PBXGroup;
 			children = (
+				18BA3E9B2C624EDD00C2E61C /* UIKit */,
 				181C79AC2C5FA41B003BF4F4 /* ViewModel */,
 				18D915FD2C57F5C000796C37 /* MyLockedDiary.entitlements */,
 				18094FD12C5DECC40057CB02 /* Helpers */,
@@ -193,6 +219,7 @@
 				181C79A92C5F6DD6003BF4F4 /* MainTabView.swift */,
 				18F7F7872C5FC5A800537E49 /* CalendarView.swift */,
 				181C79AF2C5FBAD8003BF4F4 /* AddNewNoteView.swift */,
+				180B8C492C70C44F0054F1CA /* AddingNewNoteScreen.swift */,
 				18F7F7892C5FC6BB00537E49 /* ProfileView.swift */,
 			);
 			path = Screens;
@@ -202,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				18D916242C57F7E400796C37 /* ThemeModel.swift */,
+				18BA3E9E2C6252AA00C2E61C /* Note.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -337,14 +365,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				18F7F7882C5FC5A800537E49 /* CalendarView.swift in Sources */,
+				18BA3E9D2C624EEB00C2E61C /* TransparentTextEditor.swift in Sources */,
 				181C79AE2C5FA42C003BF4F4 /* MainTabViewViewModel.swift in Sources */,
 				18D915F52C57F5BE00796C37 /* ContentView.swift in Sources */,
 				181C79B02C5FBAD8003BF4F4 /* AddNewNoteView.swift in Sources */,
+				180B8C4A2C70C44F0054F1CA /* AddingNewNoteScreen.swift in Sources */,
 				181C79AA2C5F6DD6003BF4F4 /* MainTabView.swift in Sources */,
 				18D916222C57F63300796C37 /* ChooseYourDiaryTheme.swift in Sources */,
 				18094FD62C5E5D1A0057CB02 /* Color.swift in Sources */,
 				18094FD42C5DECF20057CB02 /* View.swift in Sources */,
 				18D916252C57F7E400796C37 /* ThemeModel.swift in Sources */,
+				18B21A482C724DC70031139C /* NoteView.swift in Sources */,
+				18BA3E9F2C6252AA00C2E61C /* Note.swift in Sources */,
 				18F7F78A2C5FC6BB00537E49 /* ProfileView.swift in Sources */,
 				18D915F32C57F5BE00796C37 /* MyLockedDiaryApp.swift in Sources */,
 			);

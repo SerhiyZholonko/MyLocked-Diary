@@ -9,7 +9,7 @@ import SwiftUI
 
 
 class MainTabViewViewModel: ObservableObject {
-    var selectionIndex = 0
+    var selectionIndex = 2
     let themeListImage: [ThemeModel] = [ThemeModel(bgImageName: "glacier", color: Color.orangeColors, imageName: "glacier"), ThemeModel(bgImageName:  "tree", color: Color.limeColors, imageName: "tree"), ThemeModel(bgImageName: "fantasy", color: Color.skyColors, imageName: "fantasy")]
     func getThemeBackgroundColor() -> Color {
         themeListImage[selectionIndex].color[1]
@@ -17,6 +17,9 @@ class MainTabViewViewModel: ObservableObject {
     func getTintColor() -> Color {
         themeListImage[selectionIndex].color[0]
 
+    }
+    func getHeaderImageName() -> String {
+        themeListImage[selectionIndex].imageName
     }
     func getSelectedColor() -> Color {
         themeListImage[selectionIndex].color[3]
