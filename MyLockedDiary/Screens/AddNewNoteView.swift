@@ -86,15 +86,17 @@ struct AddNewNoteView: View {
                             .clipShape(Circle())
                             .foregroundColor(viewModel.getSelectedColor())
                     }
-                    .padding([.bottom, .trailing], 16)
-                    .sheet(isPresented: $showingNewNoteView) { // Present the sheet
-                        NavigationStack {
-                            AddingNewNoteScreen()
-                                .environmentObject(viewModel)
-                        }
-                        .presentationDetents([.medium])
-                    }
-                }
+					.sheet(isPresented: $showingNewNoteView) {
+						NavigationStack {
+							AddingNewNoteScreen()
+								.environmentObject(viewModel)
+						}
+						.presentationDetents([
+							.large,
+							.fraction(0.65) // Custom detent between medium and large
+						])
+					}
+				}
             }
             .offset(y: -100)
         }

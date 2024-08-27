@@ -16,13 +16,15 @@ struct AddingNewNoteScreen: View {
     @State var noteText: String = ""
     
     var body: some View {
-        VStack {
+		VStack(alignment: .leading) {
             Group {
                 TextField("Enter title", text: $noteTitle)
-                TransparentTextEditor(text: $noteText)
-                    .frame(height: 150)
-                    .background(Color.secondary.opacity(0.3))
-                    .cornerRadius(8)
+					TransparentTextEditor(text: $noteText)
+						.frame(height: 150)
+						.background(Color.secondary.opacity(0.3))
+						.cornerRadius(8)
+				
+               
                 Button("Create") {
                     let newNote = Note(title: noteTitle, noteText: noteText)
                     context.insert(newNote)
@@ -39,7 +41,8 @@ struct AddingNewNoteScreen: View {
             .frame(maxWidth: .infinity, alignment: .trailing)
             .buttonStyle(.borderedProminent)
             .padding(.horizontal)
-            
+			AddNoteBottomView()
+				.padding(.leading)
             Spacer()
         }
         .toolbar {

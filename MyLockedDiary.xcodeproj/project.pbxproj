@@ -16,6 +16,7 @@
 		18B21A482C724DC70031139C /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B21A472C724DC70031139C /* NoteView.swift */; };
 		18BA3E9D2C624EEB00C2E61C /* TransparentTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BA3E9C2C624EEB00C2E61C /* TransparentTextEditor.swift */; };
 		18BA3E9F2C6252AA00C2E61C /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BA3E9E2C6252AA00C2E61C /* Note.swift */; };
+		18CAE6AF2C7DF9F800656837 /* AddNoteBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CAE6AE2C7DF9F800656837 /* AddNoteBottomView.swift */; };
 		18D915F32C57F5BE00796C37 /* MyLockedDiaryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D915F22C57F5BE00796C37 /* MyLockedDiaryApp.swift */; };
 		18D915F52C57F5BE00796C37 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D915F42C57F5BE00796C37 /* ContentView.swift */; };
 		18D915F92C57F5C000796C37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18D915F82C57F5C000796C37 /* Assets.xcassets */; };
@@ -56,6 +57,7 @@
 		18B21A472C724DC70031139C /* NoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
 		18BA3E9C2C624EEB00C2E61C /* TransparentTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentTextEditor.swift; sourceTree = "<group>"; };
 		18BA3E9E2C6252AA00C2E61C /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		18CAE6AE2C7DF9F800656837 /* AddNoteBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteBottomView.swift; sourceTree = "<group>"; };
 		18D915EF2C57F5BE00796C37 /* MyLockedDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyLockedDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D915F22C57F5BE00796C37 /* MyLockedDiaryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLockedDiaryApp.swift; sourceTree = "<group>"; };
 		18D915F42C57F5BE00796C37 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -152,6 +154,15 @@
 			path = UIKit;
 			sourceTree = "<group>";
 		};
+		18CAE6AD2C7DF9B100656837 /* AddingNewNoteScreen */ = {
+			isa = PBXGroup;
+			children = (
+				180B8C492C70C44F0054F1CA /* AddingNewNoteScreen.swift */,
+				18CAE6AE2C7DF9F800656837 /* AddNoteBottomView.swift */,
+			);
+			path = AddingNewNoteScreen;
+			sourceTree = "<group>";
+		};
 		18D915E62C57F5BE00796C37 = {
 			isa = PBXGroup;
 			children = (
@@ -219,7 +230,7 @@
 				181C79A92C5F6DD6003BF4F4 /* MainTabView.swift */,
 				18F7F7872C5FC5A800537E49 /* CalendarView.swift */,
 				181C79AF2C5FBAD8003BF4F4 /* AddNewNoteView.swift */,
-				180B8C492C70C44F0054F1CA /* AddingNewNoteScreen.swift */,
+				18CAE6AD2C7DF9B100656837 /* AddingNewNoteScreen */,
 				18F7F7892C5FC6BB00537E49 /* ProfileView.swift */,
 			);
 			path = Screens;
@@ -365,6 +376,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18F7F7882C5FC5A800537E49 /* CalendarView.swift in Sources */,
+				18CAE6AF2C7DF9F800656837 /* AddNoteBottomView.swift in Sources */,
 				18BA3E9D2C624EEB00C2E61C /* TransparentTextEditor.swift in Sources */,
 				181C79AE2C5FA42C003BF4F4 /* MainTabViewViewModel.swift in Sources */,
 				18D915F52C57F5BE00796C37 /* ContentView.swift in Sources */,
