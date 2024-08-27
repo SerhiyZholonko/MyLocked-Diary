@@ -92,7 +92,7 @@ struct AddNewNoteView: View {
                             AddingNewNoteScreen()
                                 .environmentObject(viewModel)
                         }
-                        .presentationDetents([.medium])
+						.presentationDetents([.medium])
                     }
                 }
             }
