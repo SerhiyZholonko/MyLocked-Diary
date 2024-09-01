@@ -20,5 +20,101 @@
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AC95DFF9-4DA7-4951-A3AB-0EF2276FBAFE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyLockedDiary/Screens/AddingNewNoteScreen/AddingNewNoteScreen.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "sheetView"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "AC95DFF9-4DA7-4951-A3AB-0EF2276FBAFE - 30240b679d21d8e5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyLockedDiary.AddingNewNoteScreen.sheetView.getter : some"
+                  moduleName = "MyLockedDiary"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Documents/gitHub/MyLocked%20Diary/MyLockedDiary/Screens/AddingNewNoteScreen/AddingNewNoteScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "588">
+               </Location>
+               <Location
+                  uuid = "AC95DFF9-4DA7-4951-A3AB-0EF2276FBAFE - 30240b679d21d8e5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyLockedDiary.AddingNewNoteScreen.sheetView.getter : some"
+                  moduleName = "MyLockedDiary"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Documents/gitHub/MyLocked%20Diary/MyLockedDiary/Screens/AddingNewNoteScreen/AddingNewNoteScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "436">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "103FE218-FF7A-4337-A9C4-4A9DE9252147"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyLockedDiary/Screens/AddingNewNoteScreen/AddingNewNoteScreen.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "sheetView"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "103FE218-FF7A-4337-A9C4-4A9DE9252147 - 30240b679d21d884"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyLockedDiary.AddingNewNoteScreen.sheetView.getter : some"
+                  moduleName = "MyLockedDiary"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Documents/gitHub/MyLocked%20Diary/MyLockedDiary/Screens/AddingNewNoteScreen/AddingNewNoteScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "412">
+               </Location>
+               <Location
+                  uuid = "103FE218-FF7A-4337-A9C4-4A9DE9252147 - 30240b679d21d884"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyLockedDiary.AddingNewNoteScreen.sheetView.getter : some"
+                  moduleName = "MyLockedDiary"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Documents/gitHub/MyLocked%20Diary/MyLockedDiary/Screens/AddingNewNoteScreen/AddingNewNoteScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "300">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

@@ -8,10 +8,15 @@
 import SwiftUI
 
 struct AddNoteBottomView: View {
+    var dismissKeybourd: () -> Void
+    @Binding var currentView: NoteViewCase
+
     var body: some View {
 		VStack {
 			HStack {
 				Button {
+                    dismissKeybourd()
+                    currentView = .rectanglePortrait
 					print("rectangle.portrait")
 				} label: {
 					Image(systemName:"rectangle.portrait")
@@ -20,6 +25,9 @@ struct AddNoteBottomView: View {
 						.padding(.horizontal, 6)
 				}
 				Button {
+                    dismissKeybourd()
+                    currentView = .photo
+
 					print("photo")
 				} label: {
 					Image(systemName: "photo")
@@ -28,6 +36,9 @@ struct AddNoteBottomView: View {
 						.padding(.horizontal, 6)
 				}
 				Button  {
+                    dismissKeybourd()
+                    currentView = .listBullet
+
 					print("list.bullet")
 				} label: {
 					Image(systemName: "list.bullet")
@@ -36,6 +47,9 @@ struct AddNoteBottomView: View {
 						.padding(.horizontal, 6)
 				}
 				Button  {
+                    dismissKeybourd()
+                    currentView = .smile
+
 					print("smile")
 				} label: {
 					Image("smile")
@@ -44,6 +58,9 @@ struct AddNoteBottomView: View {
 						.padding(.horizontal, 6)
 				}
 				Button  {
+                    dismissKeybourd()
+                    currentView = .textFormatSize
+
 					print("textformat.size")
 				} label: {
 					Image(systemName: "textformat.size")
@@ -52,6 +69,8 @@ struct AddNoteBottomView: View {
 						.padding(.horizontal, 6)
 				}
 				Button  {
+                    dismissKeybourd()
+                    currentView = .tag
 					print("tag")
 				} label: {
 					Image(systemName: "tag")
@@ -70,5 +89,16 @@ struct AddNoteBottomView: View {
 }
 
 #Preview {
-    AddNoteBottomView()
+    AddNoteBottomView(dismissKeybourd: {}, currentView: .constant(.none))
+}
+
+
+enum NoteViewCase {
+    case rectanglePortrait
+    case photo
+    case listBullet
+    case smile
+    case textFormatSize
+    case tag
+    case none
 }

@@ -13,6 +13,8 @@
 		181C79AA2C5F6DD6003BF4F4 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181C79A92C5F6DD6003BF4F4 /* MainTabView.swift */; };
 		181C79AE2C5FA42C003BF4F4 /* MainTabViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181C79AD2C5FA42C003BF4F4 /* MainTabViewViewModel.swift */; };
 		181C79B02C5FBAD8003BF4F4 /* AddNewNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181C79AF2C5FBAD8003BF4F4 /* AddNewNoteView.swift */; };
+		18856E0C2C834BD600949FCA /* EmojiCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18856E0B2C834BD600949FCA /* EmojiCollectionView.swift */; };
+		1896F8FA2C82D82F00C7A342 /* SetBackgroundGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1896F8F92C82D82F00C7A342 /* SetBackgroundGridView.swift */; };
 		18B21A482C724DC70031139C /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B21A472C724DC70031139C /* NoteView.swift */; };
 		18BA3E9D2C624EEB00C2E61C /* TransparentTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BA3E9C2C624EEB00C2E61C /* TransparentTextEditor.swift */; };
 		18BA3E9F2C6252AA00C2E61C /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BA3E9E2C6252AA00C2E61C /* Note.swift */; };
@@ -54,6 +56,8 @@
 		181C79A92C5F6DD6003BF4F4 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		181C79AD2C5FA42C003BF4F4 /* MainTabViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewViewModel.swift; sourceTree = "<group>"; };
 		181C79AF2C5FBAD8003BF4F4 /* AddNewNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewNoteView.swift; sourceTree = "<group>"; };
+		18856E0B2C834BD600949FCA /* EmojiCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCollectionView.swift; sourceTree = "<group>"; };
+		1896F8F92C82D82F00C7A342 /* SetBackgroundGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetBackgroundGridView.swift; sourceTree = "<group>"; };
 		18B21A472C724DC70031139C /* NoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
 		18BA3E9C2C624EEB00C2E61C /* TransparentTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentTextEditor.swift; sourceTree = "<group>"; };
 		18BA3E9E2C6252AA00C2E61C /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
@@ -159,6 +163,8 @@
 			children = (
 				180B8C492C70C44F0054F1CA /* AddingNewNoteScreen.swift */,
 				18CAE6AE2C7DF9F800656837 /* AddNoteBottomView.swift */,
+				18856E0B2C834BD600949FCA /* EmojiCollectionView.swift */,
+				1896F8F92C82D82F00C7A342 /* SetBackgroundGridView.swift */,
 			);
 			path = AddingNewNoteScreen;
 			sourceTree = "<group>";
@@ -382,10 +388,12 @@
 				18D915F52C57F5BE00796C37 /* ContentView.swift in Sources */,
 				181C79B02C5FBAD8003BF4F4 /* AddNewNoteView.swift in Sources */,
 				180B8C4A2C70C44F0054F1CA /* AddingNewNoteScreen.swift in Sources */,
+				18856E0C2C834BD600949FCA /* EmojiCollectionView.swift in Sources */,
 				181C79AA2C5F6DD6003BF4F4 /* MainTabView.swift in Sources */,
 				18D916222C57F63300796C37 /* ChooseYourDiaryTheme.swift in Sources */,
 				18094FD62C5E5D1A0057CB02 /* Color.swift in Sources */,
 				18094FD42C5DECF20057CB02 /* View.swift in Sources */,
+				1896F8FA2C82D82F00C7A342 /* SetBackgroundGridView.swift in Sources */,
 				18D916252C57F7E400796C37 /* ThemeModel.swift in Sources */,
 				18B21A482C724DC70031139C /* NoteView.swift in Sources */,
 				18BA3E9F2C6252AA00C2E61C /* Note.swift in Sources */,

@@ -15,6 +15,8 @@ struct AddNewNoteView: View {
     @State private var showingNewNoteView = false // State to control sheet presentation
     let columns = [GridItem(.flexible())]
     
+    @State private var currentDetent: PresentationDetent = .fraction(1.0)
+    
     var body: some View {
         ZStack {
             VStack(spacing: 0) {
@@ -36,7 +38,7 @@ struct AddNewNoteView: View {
                                         .padding(.leading, 16)
                                     Spacer()
                                 }
-
+                                
                                 HStack {
                                     Text("Title")
                                         .font(.caption)
@@ -59,7 +61,7 @@ struct AddNewNoteView: View {
                                 VStack {
                                     Image(systemName: "trash")
                                 }
-                               
+                                
                             }
                         }
                     }
@@ -70,7 +72,7 @@ struct AddNewNoteView: View {
                 Spacer()
             }
             .background(viewModel.getThemeBackgroundColor())
-
+            
             VStack {
                 Spacer()
                 HStack {
@@ -81,22 +83,20 @@ struct AddNewNoteView: View {
                         Image(systemName: "plus.circle.fill")
                             .renderingMode(.template)
                             .resizable()
-                            .background(Color.white)
-                            .frame(width: 60, height: 60)
+                            .background(.white)
+                            .frame(width: 80, height: 80)
                             .clipShape(Circle())
                             .foregroundColor(viewModel.getSelectedColor())
+                            .shadow(color: .gray, radius: 14, x: 0, y: 2) // Add shadow
+                            .padding(.horizontal, 40)
                     }
-					.sheet(isPresented: $showingNewNoteView) {
-						NavigationStack {
-							AddingNewNoteScreen()
-								.environmentObject(viewModel)
-						}
-						.presentationDetents([
-							.large,
-							.fraction(0.65) // Custom detent between medium and large
-						])
-					}
-				}
+                    .fullScreenCover(isPresented: $showingNewNoteView) {
+                        NavigationStack {
+                            AddingNewNoteScreen()
+                                .environmentObject(viewModel)
+                        }
+                    }
+                }
             }
             .offset(y: -100)
         }
@@ -115,15 +115,6 @@ struct AddNewNoteView: View {
         }
     }
 }
-
-
-
-//struct NewNoteView: View { // This is the new screen to present
-//    var body: some View {
-//        Text("This is the new screen!")
-//            .font(.largeTitle)
-//    }
-//}
 
 
 
