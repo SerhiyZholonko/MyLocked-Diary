@@ -141,6 +141,56 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		1864C7F52C85B60600FC6226 /* AddNewNoteView */ = {
+			isa = PBXGroup;
+			children = (
+				181C79AF2C5FBAD8003BF4F4 /* AddNewNoteView.swift */,
+			);
+			path = AddNewNoteView;
+			sourceTree = "<group>";
+		};
+		1864C7F62C85B7DB00FC6226 /* MainTabView */ = {
+			isa = PBXGroup;
+			children = (
+				181C79A92C5F6DD6003BF4F4 /* MainTabView.swift */,
+			);
+			path = MainTabView;
+			sourceTree = "<group>";
+		};
+		1864C7F72C85B7E800FC6226 /* ProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				18F7F7892C5FC6BB00537E49 /* ProfileView.swift */,
+			);
+			path = ProfileView;
+			sourceTree = "<group>";
+		};
+		1864C7F82C85B80B00FC6226 /* CalendarView */ = {
+			isa = PBXGroup;
+			children = (
+				18F7F7872C5FC5A800537E49 /* CalendarView.swift */,
+			);
+			path = CalendarView;
+			sourceTree = "<group>";
+		};
+		1864C7F92C85B81500FC6226 /* ChooseYourDiaryTheme */ = {
+			isa = PBXGroup;
+			children = (
+				18D916212C57F63300796C37 /* ChooseYourDiaryTheme.swift */,
+			);
+			path = ChooseYourDiaryTheme;
+			sourceTree = "<group>";
+		};
+		1864C7FA2C85B83F00FC6226 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				18CAE6AE2C7DF9F800656837 /* AddNoteBottomView.swift */,
+				1896F8F92C82D82F00C7A342 /* SetBackgroundGridView.swift */,
+				18856E0B2C834BD600949FCA /* EmojiCollectionView.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
 		18B21A462C724DB70031139C /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,9 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				180B8C492C70C44F0054F1CA /* AddingNewNoteScreen.swift */,
-				18CAE6AE2C7DF9F800656837 /* AddNoteBottomView.swift */,
-				18856E0B2C834BD600949FCA /* EmojiCollectionView.swift */,
-				1896F8F92C82D82F00C7A342 /* SetBackgroundGridView.swift */,
+				1864C7FA2C85B83F00FC6226 /* Subviews */,
 			);
 			path = AddingNewNoteScreen;
 			sourceTree = "<group>";
@@ -192,7 +240,6 @@
 		18D915F12C57F5BE00796C37 /* MyLockedDiary */ = {
 			isa = PBXGroup;
 			children = (
-				18BA3E9B2C624EDD00C2E61C /* UIKit */,
 				181C79AC2C5FA41B003BF4F4 /* ViewModel */,
 				18D915FD2C57F5C000796C37 /* MyLockedDiary.entitlements */,
 				18094FD12C5DECC40057CB02 /* Helpers */,
@@ -232,12 +279,13 @@
 		18D916202C57F5F300796C37 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				18D916212C57F63300796C37 /* ChooseYourDiaryTheme.swift */,
-				181C79A92C5F6DD6003BF4F4 /* MainTabView.swift */,
-				18F7F7872C5FC5A800537E49 /* CalendarView.swift */,
-				181C79AF2C5FBAD8003BF4F4 /* AddNewNoteView.swift */,
+				18BA3E9B2C624EDD00C2E61C /* UIKit */,
+				1864C7F92C85B81500FC6226 /* ChooseYourDiaryTheme */,
+				1864C7F62C85B7DB00FC6226 /* MainTabView */,
+				1864C7F82C85B80B00FC6226 /* CalendarView */,
+				1864C7F52C85B60600FC6226 /* AddNewNoteView */,
 				18CAE6AD2C7DF9B100656837 /* AddingNewNoteScreen */,
-				18F7F7892C5FC6BB00537E49 /* ProfileView.swift */,
+				1864C7F72C85B7E800FC6226 /* ProfileView */,
 			);
 			path = Screens;
 			sourceTree = "<group>";

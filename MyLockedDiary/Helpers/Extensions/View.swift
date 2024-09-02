@@ -43,3 +43,11 @@ extension View {
     }
 }
 
+
+extension View {
+    func hideKeyboard() {
+        UIView.animate(withDuration: 0.2) {
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        }
+    }
+}

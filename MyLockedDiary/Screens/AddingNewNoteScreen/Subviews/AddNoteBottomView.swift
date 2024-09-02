@@ -9,6 +9,8 @@ import SwiftUI
 
 struct AddNoteBottomView: View {
     var dismissKeybourd: () -> Void
+    @EnvironmentObject var viewModel: MainTabViewViewModel
+
     @Binding var currentView: NoteViewCase
 
     var body: some View {
@@ -46,17 +48,7 @@ struct AddNoteBottomView: View {
 						.frame(width: 24, height: 24)
 						.padding(.horizontal, 6)
 				}
-				Button  {
-                    dismissKeybourd()
-                    currentView = .smile
-
-					print("smile")
-				} label: {
-					Image("smile")
-						.resizable()
-						.frame(width: 24, height: 24)
-						.padding(.horizontal, 6)
-				}
+			
 				Button  {
                     dismissKeybourd()
                     currentView = .textFormatSize
@@ -83,7 +75,7 @@ struct AddNoteBottomView: View {
 			.padding()
 			.tint(.black)
 		}
-		.background(.secondary)
+        .background(viewModel.getSelectedColor())
 		.cornerRadius(10)
     }
 }
