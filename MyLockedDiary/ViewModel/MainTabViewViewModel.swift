@@ -9,6 +9,17 @@ import SwiftUI
 
 
 class MainTabViewViewModel: ObservableObject {
+    @Published var selectedFontName: FontName? = .default
+    @Published var selectedFontSize: FontSize? = .h3
+        
+    
+    var selectedFont: UIFont! {
+          guard let fontName = selectedFontName?.fontName, let fontSize = selectedFontSize?.fontValue else {
+              return UIFont(name: ".SFUIText", size: 14)!
+          }
+          return UIFont(name: fontName, size: fontSize)
+      }
+      
     var selectionIndex = 2
     let themeListImage: [ThemeModel] = [ThemeModel(bgImageName: "glacier", color: Color.orangeColors, imageName: "glacier"), ThemeModel(bgImageName:  "tree", color: Color.limeColors, imageName: "tree"), ThemeModel(bgImageName: "fantasy", color: Color.skyColors, imageName: "fantasy")]
     func getThemeBackgroundColor() -> Color {
@@ -25,4 +36,5 @@ class MainTabViewViewModel: ObservableObject {
         themeListImage[selectionIndex].color[3]
 
     }
+    
 }

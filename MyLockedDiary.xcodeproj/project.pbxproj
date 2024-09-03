@@ -19,6 +19,7 @@
 		18BA3E9D2C624EEB00C2E61C /* TransparentTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BA3E9C2C624EEB00C2E61C /* TransparentTextEditor.swift */; };
 		18BA3E9F2C6252AA00C2E61C /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BA3E9E2C6252AA00C2E61C /* Note.swift */; };
 		18CAE6AF2C7DF9F800656837 /* AddNoteBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CAE6AE2C7DF9F800656837 /* AddNoteBottomView.swift */; };
+		18CD40622C86FD570031DAF2 /* SelectFontView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD40612C86FD570031DAF2 /* SelectFontView.swift */; };
 		18D915F32C57F5BE00796C37 /* MyLockedDiaryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D915F22C57F5BE00796C37 /* MyLockedDiaryApp.swift */; };
 		18D915F52C57F5BE00796C37 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D915F42C57F5BE00796C37 /* ContentView.swift */; };
 		18D915F92C57F5C000796C37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18D915F82C57F5C000796C37 /* Assets.xcassets */; };
@@ -62,6 +63,7 @@
 		18BA3E9C2C624EEB00C2E61C /* TransparentTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentTextEditor.swift; sourceTree = "<group>"; };
 		18BA3E9E2C6252AA00C2E61C /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		18CAE6AE2C7DF9F800656837 /* AddNoteBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteBottomView.swift; sourceTree = "<group>"; };
+		18CD40612C86FD570031DAF2 /* SelectFontView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFontView.swift; sourceTree = "<group>"; };
 		18D915EF2C57F5BE00796C37 /* MyLockedDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyLockedDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D915F22C57F5BE00796C37 /* MyLockedDiaryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLockedDiaryApp.swift; sourceTree = "<group>"; };
 		18D915F42C57F5BE00796C37 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				18CAE6AE2C7DF9F800656837 /* AddNoteBottomView.swift */,
 				1896F8F92C82D82F00C7A342 /* SetBackgroundGridView.swift */,
 				18856E0B2C834BD600949FCA /* EmojiCollectionView.swift */,
+				18CD40612C86FD570031DAF2 /* SelectFontView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 				181C79B02C5FBAD8003BF4F4 /* AddNewNoteView.swift in Sources */,
 				180B8C4A2C70C44F0054F1CA /* AddingNewNoteScreen.swift in Sources */,
 				18856E0C2C834BD600949FCA /* EmojiCollectionView.swift in Sources */,
+				18CD40622C86FD570031DAF2 /* SelectFontView.swift in Sources */,
 				181C79AA2C5F6DD6003BF4F4 /* MainTabView.swift in Sources */,
 				18D916222C57F63300796C37 /* ChooseYourDiaryTheme.swift in Sources */,
 				18094FD62C5E5D1A0057CB02 /* Color.swift in Sources */,

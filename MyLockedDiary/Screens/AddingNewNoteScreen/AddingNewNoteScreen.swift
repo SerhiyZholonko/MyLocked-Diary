@@ -19,7 +19,7 @@ struct AddingNewNoteScreen: View {
     @State private var showImagePicker = false
     @State private var isNumberingEnabled: Bool = true // Control numbering here
     @State private var isPhotoPickerPresented = false // New state variable for the photo picker
-
+    @State private var isSelectFont: Bool = false
     @State private var isListInTextView: Bool = false//  for adding list in text view
     @State private var shouldFocus: Bool = false
     
@@ -34,13 +34,19 @@ struct AddingNewNoteScreen: View {
    
     @State private var currentView: NoteViewCase = .none
     
+    
+    @State private var selectedFont: UIFont = UIFont.systemFont(ofSize: 17) // Default font
+
+    
     var body: some View {
         ZStack {
             
-            VStack(alignment: .leading) {
+            ScrollView {
                 Group {
                     HStack {
                         TextField("Enter title", text: $noteTitle)
+                            .font(viewModel.selectedFont 
+                                  != nil ? Font(viewModel.selectedFont! as CTFont) : .system(size: 16)) // Apply font from viewModel if available
                             .focused($isTextFieldFocused)
                         Button {
                             isEmojiView.toggle()
@@ -55,7 +61,7 @@ struct AddingNewNoteScreen: View {
                         .buttonStyle(PlainButtonStyle()) // This removes the default
                     }
                     ZStack {
-                        TransparentTextEditor(text: $noteText, isNumberingEnabled: $isListInTextView)
+                        TransparentTextEditor(text: $noteText, isNumberingEnabled: $isListInTextView, shouldFocus: $shouldFocus, font: viewModel.selectedFont ?? UIFont.systemFont(ofSize: 16) )
                 
                             .background(Color.secondary.opacity(0.3))
                             .cornerRadius(8)
@@ -110,7 +116,11 @@ struct AddingNewNoteScreen: View {
                 
                 
             }
-            VStack {
+            .onTapGesture {
+                  hideKeyboard()
+              }
+              
+            VStack(alignment: .leading) {
                 Spacer()
                 AddNoteBottomView(dismissKeybourd: {
                     hideKeyboard()
@@ -124,12 +134,17 @@ struct AddingNewNoteScreen: View {
                         isPhotoPickerPresented.toggle() // Toggle photo picker presentation
                     case .listBullet:
                         isListInTextView.toggle()
+                    case .textFormatSize:
+                        isSelectFont.toggle()
+//                        selectedFont = UIFont.systemFont(ofSize: 24) // Change font size or style
+//                                   shouldFocus = true
                     default:
                         break
                     }
                 }
                 .padding(.leading)
             }
+            .zIndex(1)
             .padding(.bottom)
            
         }
@@ -144,6 +159,7 @@ struct AddingNewNoteScreen: View {
         }
         .background(viewModel.getThemeBackgroundColor())
         .navigationTitle("Adding new note")
+        .navigationBarTitleDisplayMode(.inline)
         .fullScreenCover(isPresented: $isSetBackgroundGridView) {
             SetBackgroundGridView()
                 .environmentObject(viewModel)
@@ -152,6 +168,13 @@ struct AddingNewNoteScreen: View {
                     currentView = .none
                 }
         }
+        
+        //MARK: - select font
+        .sheet(isPresented: $isSelectFont, content: {
+            SelectFontView()
+                .environmentObject(viewModel)
+                .presentationDetents([.medium]) // Set the presentation style to medium
+        })
         .photosPicker(isPresented: $isPhotoPickerPresented, selection: $selectedItems, maxSelectionCount: 5, matching: .images)
       
         .onChange(of: isPhotoPickerPresented, { oldValue, newValue in
@@ -173,7 +196,12 @@ struct AddingNewNoteScreen: View {
                 shouldFocus = true
             }
         })
+        .onChange(of: isSelectFont, { oldValue, newValue in
+            if !newValue {
+                currentView = .none
 
+            }
+        })
         .onChange(of: selectedItems) {  oldValue, newValue in
             selectedImages.removeAll() // Clear previous images
 
