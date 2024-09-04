@@ -13,6 +13,8 @@
 		181C79AA2C5F6DD6003BF4F4 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181C79A92C5F6DD6003BF4F4 /* MainTabView.swift */; };
 		181C79AE2C5FA42C003BF4F4 /* MainTabViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181C79AD2C5FA42C003BF4F4 /* MainTabViewViewModel.swift */; };
 		181C79B02C5FBAD8003BF4F4 /* AddNewNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181C79AF2C5FBAD8003BF4F4 /* AddNewNoteView.swift */; };
+		1857AD132C88275000F77C87 /* KindOfListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1857AD122C88275000F77C87 /* KindOfListView.swift */; };
+		18775E2C2C8850A400F86A5C /* AddTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18775E2B2C8850A400F86A5C /* AddTagsView.swift */; };
 		18856E0C2C834BD600949FCA /* EmojiCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18856E0B2C834BD600949FCA /* EmojiCollectionView.swift */; };
 		1896F8FA2C82D82F00C7A342 /* SetBackgroundGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1896F8F92C82D82F00C7A342 /* SetBackgroundGridView.swift */; };
 		18B21A482C724DC70031139C /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B21A472C724DC70031139C /* NoteView.swift */; };
@@ -57,6 +59,8 @@
 		181C79A92C5F6DD6003BF4F4 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		181C79AD2C5FA42C003BF4F4 /* MainTabViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewViewModel.swift; sourceTree = "<group>"; };
 		181C79AF2C5FBAD8003BF4F4 /* AddNewNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewNoteView.swift; sourceTree = "<group>"; };
+		1857AD122C88275000F77C87 /* KindOfListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KindOfListView.swift; sourceTree = "<group>"; };
+		18775E2B2C8850A400F86A5C /* AddTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTagsView.swift; sourceTree = "<group>"; };
 		18856E0B2C834BD600949FCA /* EmojiCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCollectionView.swift; sourceTree = "<group>"; };
 		1896F8F92C82D82F00C7A342 /* SetBackgroundGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetBackgroundGridView.swift; sourceTree = "<group>"; };
 		18B21A472C724DC70031139C /* NoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
@@ -190,6 +194,8 @@
 				1896F8F92C82D82F00C7A342 /* SetBackgroundGridView.swift */,
 				18856E0B2C834BD600949FCA /* EmojiCollectionView.swift */,
 				18CD40612C86FD570031DAF2 /* SelectFontView.swift */,
+				1857AD122C88275000F77C87 /* KindOfListView.swift */,
+				18775E2B2C8850A400F86A5C /* AddTagsView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -433,12 +439,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				18F7F7882C5FC5A800537E49 /* CalendarView.swift in Sources */,
+				1857AD132C88275000F77C87 /* KindOfListView.swift in Sources */,
 				18CAE6AF2C7DF9F800656837 /* AddNoteBottomView.swift in Sources */,
 				18BA3E9D2C624EEB00C2E61C /* TransparentTextEditor.swift in Sources */,
 				181C79AE2C5FA42C003BF4F4 /* MainTabViewViewModel.swift in Sources */,
 				18D915F52C57F5BE00796C37 /* ContentView.swift in Sources */,
 				181C79B02C5FBAD8003BF4F4 /* AddNewNoteView.swift in Sources */,
 				180B8C4A2C70C44F0054F1CA /* AddingNewNoteScreen.swift in Sources */,
+				18775E2C2C8850A400F86A5C /* AddTagsView.swift in Sources */,
 				18856E0C2C834BD600949FCA /* EmojiCollectionView.swift in Sources */,
 				18CD40622C86FD570031DAF2 /* SelectFontView.swift in Sources */,
 				181C79AA2C5F6DD6003BF4F4 /* MainTabView.swift in Sources */,

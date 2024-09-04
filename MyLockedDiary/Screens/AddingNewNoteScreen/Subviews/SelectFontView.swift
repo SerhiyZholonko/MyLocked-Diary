@@ -100,7 +100,26 @@ struct SelectFontView: View {
                 VStack(alignment: .leading) {
                     //                Text("Select a font size")
                     //                    .padding(.vertical)
-                    
+                   
+                HStack {
+                    ForEach(FontColor.allCases) { color in
+                        Color(viewModel.selectedFontColor == color ? color.color : color.color.opacity(0.5))
+                            .frame(width: 30, height: 30)
+                            .cornerRadius(15)
+                            .overlay(
+                                Circle()
+                                    .stroke(viewModel.selectedFontColor == color ?  viewModel.getSelectedColor() : Color.clear, lineWidth: 2)
+                            )
+                            .onTapGesture {
+                                viewModel.selectedFontColor = color
+                            }
+                    }
+                }
+                .padding(.vertical)
+                    Divider()
+                        .frame( height: 2)
+                        .background(.gray)
+                        .padding(.vertical, 3)
                     HStack {
                         ForEach(FontSize.allCases) { size in
                             Text(size.name) // Assuming you have a way to convert each case to a string, like `.name`
@@ -143,36 +162,8 @@ struct SelectFontView: View {
                         
                         Spacer()
                     }
-//                ScrollView(.horizontal) {
-//                    HStack {
-//                        ForEach(FontName.allCases, id: \.self) { fontName in
-//                            VStack {
-//                                Text(fontName.rawValue) // Display the font name
-//                                    .font(.custom(fontName.fontName, size: 16)) // Display the font name with the corresponding font
-//                                    .onTapGesture {
-//                                        print(fontName)
-//                                        viewModel.selectedFontName = fontName
-//                                    }
-//                            }
-//                            .padding()
-//                            .background( viewModel.selectedFontName == fontName ?  viewModel.getSelectedColor() : viewModel.getSelectedColor().opacity(0.5) )
-//                            .cornerRadius(10)
-//                        }
-//                    }
-//                }
-                    Divider()
-                        .frame( height: 2)
-                        .background(.gray)
-                        .padding(.vertical, 3)
-                HStack {
-                    ForEach(FontColor.allCases) { color in
-                        Color(color.color)
-                            .frame(width: 30, height: 30)
-                        //                                    .foregroundColor(.white)
-                            .cornerRadius(15)
-                    }
-                }
-                .padding(.vertical)
+
+                
                 
                 Spacer()
             }
@@ -192,6 +183,8 @@ struct SelectFontView: View {
                     }
 
                 }
+                .navigationTitle("Font")
+                .navigationBarTitleDisplayMode(.inline)
         }
         
         

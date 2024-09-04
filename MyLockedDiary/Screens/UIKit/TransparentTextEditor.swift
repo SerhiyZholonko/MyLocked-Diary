@@ -13,7 +13,7 @@ struct TransparentTextEditor: UIViewRepresentable {
     @State private var itemCount: Int = 1
     @Binding var shouldFocus: Bool // Control focus
     var font: UIFont // Add a font property
-
+    var fontColor: Color
     func makeUIView(context: Context) -> UITextView {
         let textView = UITextView()
         textView.backgroundColor = .clear
@@ -26,7 +26,7 @@ struct TransparentTextEditor: UIViewRepresentable {
     func updateUIView(_ uiView: UITextView, context: Context) {
         uiView.text = text
         uiView.font = font // Update the font here if needed
-
+        uiView.textColor = UIColor(fontColor)
         // Focus the UITextView if shouldFocus is true
         if shouldFocus {
             DispatchQueue.main.async {

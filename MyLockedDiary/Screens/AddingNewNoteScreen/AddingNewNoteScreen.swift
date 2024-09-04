@@ -20,7 +20,12 @@ struct AddingNewNoteScreen: View {
     @State private var isNumberingEnabled: Bool = true // Control numbering here
     @State private var isPhotoPickerPresented = false // New state variable for the photo picker
     @State private var isSelectFont: Bool = false
+   
     @State private var isListInTextView: Bool = false//  for adding list in text view
+    @State private var isKindOfListView: Bool = false// for showing KaidOfListView
+    
+    @State private var isTagView: Bool = false// for show tagView
+    
     @State private var shouldFocus: Bool = false
     
     @State private var selectedImage: UIImage?
@@ -35,7 +40,7 @@ struct AddingNewNoteScreen: View {
     @State private var currentView: NoteViewCase = .none
     
     
-    @State private var selectedFont: UIFont = UIFont.systemFont(ofSize: 17) // Default font
+    private var selectedFont: UIFont = UIFont.systemFont(ofSize: 17) // Default font
 
     
     var body: some View {
@@ -47,6 +52,7 @@ struct AddingNewNoteScreen: View {
                         TextField("Enter title", text: $noteTitle)
                             .font(viewModel.selectedFont 
                                   != nil ? Font(viewModel.selectedFont! as CTFont) : .system(size: 16)) // Apply font from viewModel if available
+                            .foregroundColor(viewModel.selectedFontColor!.color)
                             .focused($isTextFieldFocused)
                         Button {
                             isEmojiView.toggle()
@@ -61,7 +67,7 @@ struct AddingNewNoteScreen: View {
                         .buttonStyle(PlainButtonStyle()) // This removes the default
                     }
                     ZStack {
-                        TransparentTextEditor(text: $noteText, isNumberingEnabled: $isListInTextView, shouldFocus: $shouldFocus, font: viewModel.selectedFont ?? UIFont.systemFont(ofSize: 16) )
+                        TransparentTextEditor(text: $noteText, isNumberingEnabled: $isListInTextView, shouldFocus: $shouldFocus, font: viewModel.selectedFont ?? UIFont.systemFont(ofSize: 16), fontColor: viewModel.selectedFontColor!.color )
                 
                             .background(Color.secondary.opacity(0.3))
                             .cornerRadius(8)
@@ -77,7 +83,20 @@ struct AddingNewNoteScreen: View {
                         }
                     }
                     .frame(height: 150)
-                    
+                    if !viewModel.selectedTags.isEmpty {
+                        HStack {
+                            ForEach(viewModel.selectedTags, id: \.self) { tag in
+                                HStack {
+                                    Text("#")
+                                        .font(.system(size: 24))  // Sets the font size to 24
+
+                                    Text(tag)
+                                        .font(.system(size: 15))  // Sets the font size to 15
+                                }
+                            }
+                            Spacer()
+                        }
+                    }
                     Button("Create") {
                         let newNote = Note(title: noteTitle, noteText: noteText)
                         context.insert(newNote)
@@ -92,6 +111,8 @@ struct AddingNewNoteScreen: View {
                     .foregroundStyle(.black)
                     .tint(viewModel.getSelectedColor())
                     .disabled(noteTitle.isEmpty || noteText.isEmpty)
+                 
+
                 }
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .buttonStyle(.borderedProminent)
@@ -133,11 +154,13 @@ struct AddingNewNoteScreen: View {
                     case .photo:
                         isPhotoPickerPresented.toggle() // Toggle photo picker presentation
                     case .listBullet:
-                        isListInTextView.toggle()
+//                        isListInTextView.toggle()
+                        isKindOfListView.toggle()
                     case .textFormatSize:
                         isSelectFont.toggle()
-//                        selectedFont = UIFont.systemFont(ofSize: 24) // Change font size or style
-//                                   shouldFocus = true
+                    case .tag:
+                        isTagView.toggle()
+                        
                     default:
                         break
                     }
@@ -175,6 +198,16 @@ struct AddingNewNoteScreen: View {
                 .environmentObject(viewModel)
                 .presentationDetents([.medium]) // Set the presentation style to medium
         })
+        .sheet(isPresented: $isKindOfListView, content: {
+            KindOfListView()
+                .environmentObject(viewModel)
+                .presentationDetents([.medium]) // Set the presentation style to medium
+        })
+        .sheet(isPresented: $isTagView, content: {
+            AddTagsView()
+                .environmentObject(viewModel)
+                .presentationDetents([viewModel.isAddTag ? .fraction(1.0) : .medium]) // Set the presentation style to medium
+        })
         .photosPicker(isPresented: $isPhotoPickerPresented, selection: $selectedItems, maxSelectionCount: 5, matching: .images)
       
         .onChange(of: isPhotoPickerPresented, { oldValue, newValue in
@@ -196,15 +229,21 @@ struct AddingNewNoteScreen: View {
                 shouldFocus = true
             }
         })
+        .onChange(of: isKindOfListView, { oldValue, newValue in
+            if !newValue {
+                currentView = .none
+
+            }
+        })
         .onChange(of: isSelectFont, { oldValue, newValue in
             if !newValue {
                 currentView = .none
 
             }
         })
+       
         .onChange(of: selectedItems) {  oldValue, newValue in
             selectedImages.removeAll() // Clear previous images
-
             Task {
                 for item in newValue {
                     if let data = try? await item.loadTransferable(type: Data.self),
@@ -215,6 +254,12 @@ struct AddingNewNoteScreen: View {
             }
 
 
+        }
+        .onChange(of: isTagView) { oldValue, newValue in
+            if !newValue {
+                currentView = .none
+
+            }
         }
     }
 }
