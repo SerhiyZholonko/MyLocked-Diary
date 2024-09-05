@@ -8,6 +8,17 @@
 import SwiftUI
 
 
+struct EnergyItem: Identifiable {
+    let id = UUID()  // Add unique identifier
+    let color: Color
+    let name: String
+    let sfSymbol: String
+}
+struct FeelingItem: Identifiable {
+    let id = UUID()
+    let emoji: String
+    let name: String
+}
 class MainTabViewViewModel: ObservableObject {
     @Published var selectedFontName: FontName? = .default
     @Published var selectedFontSize: FontSize? = .h3
@@ -21,10 +32,58 @@ class MainTabViewViewModel: ObservableObject {
       }
     @Published var tags: [String] = ["tag1", "tag2","tag3", "tag4"]
     @Published var showDeleteButton: [String: Bool] = [:]
+//    @Published var selectedTags: Set<String> = []
+
     @Published var selectedTags: [String] = []
+
+    let energyColors: [EnergyItem] = [
+        EnergyItem(color: .blue, name: "Calm", sfSymbol: "tortoise"),
+        EnergyItem(color: .red, name: "Passion", sfSymbol: "flame.fill"),
+        EnergyItem(color: .green, name: "Growth", sfSymbol: "leaf.fill"),
+        EnergyItem(color: .orange, name: "Enthusiasm", sfSymbol: "sun.max.fill"),
+        EnergyItem(color: .purple, name: "Creativity", sfSymbol: "paintbrush.fill"),
+        EnergyItem(color: .yellow, name: "Happiness", sfSymbol: "star.fill"),
+        EnergyItem(color: .pink, name: "Love", sfSymbol: "heart.fill"),
+        EnergyItem(color: .gray, name: "Neutral", sfSymbol: "cloud.fill"),
+        EnergyItem(color: .brown, name: "Stability", sfSymbol: "house.fill"),
+        EnergyItem(color: .cyan, name: "Freshness", sfSymbol: "drop.fill")
+    ]
+
+    let feelings: [FeelingItem] = [
+        FeelingItem(emoji: "😊", name: "Happy"),
+        FeelingItem(emoji: "😔", name: "Sad"),
+        FeelingItem(emoji: "😡", name: "Angry"),
+        FeelingItem(emoji: "😴", name: "Tired"),
+        FeelingItem(emoji: "😎", name: "Confident"),
+        FeelingItem(emoji: "🤔", name: "Thoughtful"),
+        FeelingItem(emoji: "😇", name: "Grateful"),
+        FeelingItem(emoji: "😬", name: "Nervous"),
+        FeelingItem(emoji: "🥳", name: "Excited"),
+        FeelingItem(emoji: "😌", name: "Relaxed"),
+        FeelingItem(emoji: "😱", name: "Surprised"),
+        FeelingItem(emoji: "😕", name: "Confused"),
+        FeelingItem(emoji: "🤯", name: "Overwhelmed"),
+        FeelingItem(emoji: "🤗", name: "Loved"),
+        FeelingItem(emoji: "😤", name: "Frustrated"),
+        FeelingItem(emoji: "😭", name: "Heartbroken"),
+        FeelingItem(emoji: "😅", name: "Embarrassed"),
+        FeelingItem(emoji: "🤩", name: "Amazed"),
+        FeelingItem(emoji: "🥶", name: "Cold"),
+        FeelingItem(emoji: "🤒", name: "Sick"),
+        FeelingItem(emoji: "😇", name: "Blessed"),
+        FeelingItem(emoji: "😜", name: "Playful"),
+        FeelingItem(emoji: "🤤", name: "Hungry"),
+        FeelingItem(emoji: "😷", name: "Unwell")
+    ]
+
+    @Published var selectedEnergy: Color = .blue
+    @Published var selectedFeeling: FeelingItem?
 
     var selectionIndex = 2
     let themeListImage: [ThemeModel] = [ThemeModel(bgImageName: "glacier", color: Color.orangeColors, imageName: "glacier"), ThemeModel(bgImageName:  "tree", color: Color.limeColors, imageName: "tree"), ThemeModel(bgImageName: "fantasy", color: Color.skyColors, imageName: "fantasy")]
+    init() {
+        selectedEnergy = getSelectedColor()
+    }
     func getThemeBackgroundColor() -> Color {
         themeListImage[selectionIndex].color[1]
     }
@@ -41,11 +100,31 @@ class MainTabViewViewModel: ObservableObject {
     }
     
     //Add tag
-    func addNewTag(_ newTag: String) {
-        tags.append(newTag)
-    }
+//    func addNewTag(_ newTag: String) {
+//        tags.append(newTag)
+//    }
+//    func addTagToSelected(_ tag: String) {
+//        selectedTags.append(tag)
+//    }
+    
+    
+    
     func addTagToSelected(_ tag: String) {
-        selectedTags.append(tag)
+        if selectedTags.contains(tag) {
+            selectedTags.removeAll{$0 == tag} // Deselect if already selected
+        } else {
+            selectedTags.append(tag) // Select if not selected
+        }
+    }
+
+    func getSelectedColorForTag() -> Color {
+        return selectedTags.isEmpty ? .blue : .green
+    }
+
+    func addNewTag(_ tag: String) {
+        if !tags.contains(tag) {
+            tags.append(tag)
+        }
     }
     
 }

@@ -16,20 +16,19 @@ struct AddNoteBottomView: View {
     var body: some View {
 		VStack {
 			HStack {
-				Button {
-                    dismissKeybourd()
-                    currentView = .rectanglePortrait
-					print("rectangle.portrait")
-				} label: {
-					Image(systemName:"rectangle.portrait")
-						.resizable()
-						.frame(width: 24, height: 24)
-						.padding(.horizontal, 6)
-				}
+//				Button {
+//                    dismissKeybourd()
+//                    currentView = .rectanglePortrait
+//					print("rectangle.portrait")
+//				} label: {
+//					Image(systemName:"rectangle.portrait")
+//						.resizable()
+//						.frame(width: 24, height: 24)
+//						.padding(.horizontal, 6)
+//				}
 				Button {
                     dismissKeybourd()
                     currentView = .photo
-
 					print("photo")
 				} label: {
 					Image(systemName: "photo")
@@ -48,7 +47,6 @@ struct AddNoteBottomView: View {
 						.frame(width: 24, height: 24)
 						.padding(.horizontal, 6)
 				}
-			
 				Button  {
                     dismissKeybourd()
                     currentView = .textFormatSize
@@ -63,14 +61,12 @@ struct AddNoteBottomView: View {
 				Button  {
                     dismissKeybourd()
                     currentView = .tag
-					print("tag")
 				} label: {
 					Image(systemName: "tag")
 						.resizable()
 						.frame(width: 24, height: 24)
 						.padding(.horizontal, 6)
 				}
-				
 			}
 			.padding()
 			.tint(.black)

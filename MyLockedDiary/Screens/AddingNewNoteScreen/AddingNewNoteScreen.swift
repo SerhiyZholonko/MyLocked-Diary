@@ -28,6 +28,10 @@ struct AddingNewNoteScreen: View {
     
     @State private var shouldFocus: Bool = false
     
+    @State private var isEnergyToDay: Bool = false
+    
+    @State private var isFeelingsThisDay: Bool = false
+    
     @State private var selectedImage: UIImage?
     @State var noteTitle: String = ""
     @State var noteText: String = ""
@@ -35,7 +39,7 @@ struct AddingNewNoteScreen: View {
     
     @State private var selectedItems: [PhotosPickerItem] = []
     @State private var selectedImages: [UIImage] = []
-    
+    @State private var isDeleteButtomForImage: Bool = false
    
     @State private var currentView: NoteViewCase = .none
     
@@ -55,14 +59,35 @@ struct AddingNewNoteScreen: View {
                             .foregroundColor(viewModel.selectedFontColor!.color)
                             .focused($isTextFieldFocused)
                         Button {
-                            isEmojiView.toggle()
+                            isEnergyToDay.toggle()
                         } label: {
-                            Image(currentEmoji)
+                            Image("bolt")
                                 .resizable()
+                                .frame(width: 32, height: 32)
+                                .padding(10)
+                                .background(viewModel.selectedEnergy)
+                                .cornerRadius(10)
+                        }
+                        .buttonStyle(PlainButtonStyle()) // This removes the default
+                        Button {
+                            isFeelingsThisDay.toggle()
+                        } label: {
+                            if let item = viewModel.selectedFeeling {
+                                Text(item.emoji)
+                                    .font(.system(size: 32))
                                 .frame(width: 32, height: 32)
                                 .padding(10)
                                 .background(viewModel.getSelectedColor())
                                 .cornerRadius(10)
+                            } else {
+                                Image(currentEmoji)
+                                    .resizable()
+                                    .frame(width: 32, height: 32)
+                                    .padding(10)
+                                    .background(viewModel.getSelectedColor())
+                                    .cornerRadius(10)
+                            }
+                           
                         }
                         .buttonStyle(PlainButtonStyle()) // This removes the default
                     }
@@ -72,15 +97,7 @@ struct AddingNewNoteScreen: View {
                             .background(Color.secondary.opacity(0.3))
                             .cornerRadius(8)
                             .focused($isTextFieldFocused)
-                        if isEmojiView {
-                            EmojiCollectionView(getImageName: { currentImageName in
-                                currentEmoji = currentImageName
-                                isEmojiView.toggle()
-                            })
-                            .frame(height: 150)
-                            .cornerRadius(10)
-                            
-                        }
+
                     }
                     .frame(height: 150)
                     if !viewModel.selectedTags.isEmpty {
@@ -117,22 +134,9 @@ struct AddingNewNoteScreen: View {
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .buttonStyle(.borderedProminent)
                 .padding(.horizontal)
-                if !selectedImages.isEmpty {
-                    VStack {
-                        ScrollView(.horizontal) {
-                            HStack {
-                                ForEach(selectedImages, id: \.self) { image in
-                                    Image(uiImage: image)
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 100, height: 100)
-                                        .cornerRadius(8)
-                                }
-                            }
-                        }
-                        .padding()
-                    }
-                }
+            
+
+
                 Spacer()
                 
                 
@@ -140,7 +144,47 @@ struct AddingNewNoteScreen: View {
             .onTapGesture {
                   hideKeyboard()
               }
-              
+            if !selectedImages.isEmpty {
+                HStack {
+                    ScrollView(.horizontal) {
+                        HStack(spacing: 10) { // Spacing between images
+                            ForEach(selectedImages, id: \.self) { image in
+                                ZStack(alignment: .topTrailing) {
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .scaledToFill() // Use scaledToFill for better fit within fixed size
+                                        .frame(width: 100, height: 100) // Fixed size for image
+                                        .cornerRadius(8)
+                                        .clipped() // Ensure image does not overflow the fixed size
+                                        .onLongPressGesture {
+                                            withAnimation {
+                                                isDeleteButtomForImage.toggle() // Toggle delete button on long press
+                                            }
+                                        }
+
+                                    if isDeleteButtomForImage {
+                                        Button(action: {
+                                            if let index = selectedImages.firstIndex(of: image) {
+                                                selectedImages.remove(at: index) // Remove the image on button tap
+                                            }
+                                        }) {
+                                            Image(systemName: "xmark.circle.fill")
+                                                .foregroundColor(.red)
+                                                .background(Color.white.clipShape(Circle()))
+                                                .frame(width: 24, height: 24) // Fixed size for the button
+                                                .padding(4)
+                                        }
+                                        .offset(x: 15, y: -15) // Adjust button position
+                                    }
+                                }
+                                
+                            }
+                        }
+                        .padding() // Add padding to the HStack for better appearance
+                    }
+                    .frame(height: 120) // Fixed height for the scroll view to fit images
+                }
+            }
             VStack(alignment: .leading) {
                 Spacer()
                 AddNoteBottomView(dismissKeybourd: {
@@ -154,7 +198,6 @@ struct AddingNewNoteScreen: View {
                     case .photo:
                         isPhotoPickerPresented.toggle() // Toggle photo picker presentation
                     case .listBullet:
-//                        isListInTextView.toggle()
                         isKindOfListView.toggle()
                     case .textFormatSize:
                         isSelectFont.toggle()
@@ -171,6 +214,7 @@ struct AddingNewNoteScreen: View {
             .padding(.bottom)
            
         }
+      
         .toolbar {
             Button {
                 dismiss()
@@ -208,12 +252,24 @@ struct AddingNewNoteScreen: View {
                 .environmentObject(viewModel)
                 .presentationDetents([viewModel.isAddTag ? .fraction(1.0) : .medium]) // Set the presentation style to medium
         })
+        .sheet(isPresented: $isEnergyToDay, content: {
+            EnergyThisDay()
+                .environmentObject(viewModel)
+                .presentationDetents([ .medium]) // Set the presentation style to medium
+        })
+            .sheet(isPresented: $isFeelingsThisDay, content: {
+                FeelingsThisDay(getImageName: { currentImageName in
+                    currentEmoji = currentImageName
+                    isEmojiView.toggle()
+                })
+                    .environmentObject(viewModel)
+                    .presentationDetents([ .medium]) // Set the presentation style to medium
+            })
         .photosPicker(isPresented: $isPhotoPickerPresented, selection: $selectedItems, maxSelectionCount: 5, matching: .images)
       
         .onChange(of: isPhotoPickerPresented, { oldValue, newValue in
             if !newValue {
                 currentView = .none
-
             }
         })
         .onChange(of: isListInTextView, { oldValue, newValue in
@@ -252,8 +308,6 @@ struct AddingNewNoteScreen: View {
                     }
                 }
             }
-
-
         }
         .onChange(of: isTagView) { oldValue, newValue in
             if !newValue {
