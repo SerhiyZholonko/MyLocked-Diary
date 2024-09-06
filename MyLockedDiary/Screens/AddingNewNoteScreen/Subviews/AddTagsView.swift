@@ -32,6 +32,10 @@ struct AddTagsView: View {
                                 guard newTag != "", newTag.count >= 3 else { return }
                                 viewModel.addNewTag(newTag)
                                 newTag = ""
+//                                withAnimation {
+                                    viewModel.isAddTag = false
+//                                }
+
                             } label: {
                                 Image(systemName: "checkmark")
                                     .font(.system(size: 20, weight: .bold))
@@ -101,7 +105,14 @@ struct AddTagsView: View {
                 }
 
                 Button {
-                    dismiss()
+                    if !viewModel.isAddTag {
+                        dismiss()
+                    }
+//                    withAnimation {
+                       
+                        viewModel.isAddTag = false
+//                    }
+                    
                 } label: {
                     Image(systemName: "checkmark")
                         .font(.system(size: 20, weight: .bold))

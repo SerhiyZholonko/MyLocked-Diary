@@ -16,16 +16,6 @@ struct AddNoteBottomView: View {
     var body: some View {
 		VStack {
 			HStack {
-//				Button {
-//                    dismissKeybourd()
-//                    currentView = .rectanglePortrait
-//					print("rectangle.portrait")
-//				} label: {
-//					Image(systemName:"rectangle.portrait")
-//						.resizable()
-//						.frame(width: 24, height: 24)
-//						.padding(.horizontal, 6)
-//				}
 				Button {
                     dismissKeybourd()
                     currentView = .photo

@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct TransparentTextEditor: UIViewRepresentable {
+    
     @Binding var text: String
-    @Binding var isNumberingEnabled: Bool
+    @Binding var isNumberingEnabled: SelectedList
     @State private var itemCount: Int = 1
     @Binding var shouldFocus: Bool // Control focus
     var font: UIFont // Add a font property
@@ -19,11 +20,29 @@ struct TransparentTextEditor: UIViewRepresentable {
         textView.backgroundColor = .clear
         textView.font = UIFont.systemFont(ofSize: 17)
         textView.delegate = context.coordinator
-        textView.text = isNumberingEnabled ? "   1. " : ""
+        switch isNumberingEnabled {
+            
+       case .numbered:
+            textView.text =  "   1. "
+
+        case .simpleNumbered:
+            break
+        case .star:
+            break
+        case .point:
+            break
+        case .heart:
+            break
+        case .greenPoint:
+            break
+        case .none:
+            break
+        }
         return textView
     }
 
     func updateUIView(_ uiView: UITextView, context: Context) {
+        
         uiView.text = text
         uiView.font = font // Update the font here if needed
         uiView.textColor = UIColor(fontColor)
@@ -53,9 +72,9 @@ struct TransparentTextEditor: UIViewRepresentable {
             let currentLine = lines.last ?? ""
           
 
-            if parent.isNumberingEnabled && text == "\n" {
+            if parent.isNumberingEnabled == .numbered && text == "\n" {
                 if currentLine.trimmingCharacters(in: .whitespaces).isEmpty {
-                    parent.isNumberingEnabled = false
+                    parent.isNumberingEnabled = .none
                     parent.itemCount = 1
                     textView.text.append("\n")
                     parent.text = textView.text
@@ -64,7 +83,7 @@ struct TransparentTextEditor: UIViewRepresentable {
 
                 if currentLine.trimmingCharacters(in: .whitespaces) == "\(parent.itemCount)." {
                     textView.text = nsText.replacingCharacters(in: NSRange(location: range.location - currentLine.count, length: currentLine.count), with: "")
-                    parent.isNumberingEnabled = false
+                    parent.isNumberingEnabled = .none
                     parent.itemCount = 1
                     parent.text = textView.text
                     return false
@@ -72,7 +91,7 @@ struct TransparentTextEditor: UIViewRepresentable {
                 if !currentLine.trimmingCharacters(in: .whitespaces).contains("\(parent.itemCount).") {
                     let newText = "\n" + currentLine // Add a newline before the current line
                     textView.text = nsText.replacingCharacters(in: NSRange(location: range.location - currentLine.count, length: currentLine.count), with: newText)
-                    parent.isNumberingEnabled = false
+                    parent.isNumberingEnabled = .none
                     parent.itemCount = 1
                     parent.text = textView.text
                     return false

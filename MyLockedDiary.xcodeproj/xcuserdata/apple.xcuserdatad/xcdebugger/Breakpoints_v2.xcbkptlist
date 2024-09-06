@@ -36,5 +36,196 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CE5867E7-EA9F-497A-BE48-DD04932FFB88"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyLockedDiary/Screens/AddingNewNoteScreen/AddingNewNoteScreen.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "CE5867E7-EA9F-497A-BE48-DD04932FFB88 - a0137dc46324f9cf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyLockedDiary.AddingNewNoteScreen.body.getter : some"
+                  moduleName = "MyLockedDiary"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Documents/gitHub/MyLocked%20Diary/MyLockedDiary/Screens/AddingNewNoteScreen/AddingNewNoteScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "243"
+                  endingLineNumber = "243"
+                  offsetFromSymbolStart = "1612">
+               </Location>
+               <Location
+                  uuid = "CE5867E7-EA9F-497A-BE48-DD04932FFB88 - acb3ae244c401a0b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; SwiftUI.Button&lt;&lt;&lt;opaque return type of SwiftUI.View.tint&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ShapeStyle&gt;(Swift.Optional&lt;&#x3c4;_1_0&gt;) -&gt; some&gt;&gt;.0&gt; in MyLockedDiary.AddingNewNoteScreen.body.getter : some"
+                  moduleName = "MyLockedDiary"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Documents/gitHub/MyLocked%20Diary/MyLockedDiary/Screens/AddingNewNoteScreen/AddingNewNoteScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "243"
+                  endingLineNumber = "243"
+                  offsetFromSymbolStart = "220">
+               </Location>
+               <Location
+                  uuid = "CE5867E7-EA9F-497A-BE48-DD04932FFB88 - 62e741d3a53aff7d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Button&lt;&lt;&lt;opaque return type of SwiftUI.View.cornerRadius(_: CoreGraphics.CGFloat, antialiased: Swift.Bool) -&gt; some&gt;&gt;.0&gt;, SwiftUI.Button&lt;&lt;&lt;opaque return type of SwiftUI.View.tint&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ShapeStyle&gt;(Swift.Optional&lt;&#x3c4;_1_0&gt;) -&gt; some&gt;&gt;.0&gt;)&gt; in MyLockedDiary.AddingNewNoteScreen.body.getter : some"
+                  moduleName = "MyLockedDiary"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Documents/gitHub/MyLocked%20Diary/MyLockedDiary/Screens/AddingNewNoteScreen/AddingNewNoteScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "243"
+                  endingLineNumber = "243"
+                  offsetFromSymbolStart = "344">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8F0AB1CB-2928-46D3-9993-26AB34772EE8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyLockedDiary/Screens/UIKit/TransparentTextEditor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "makeUIView(context:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "8F0AB1CB-2928-46D3-9993-26AB34772EE8 - 6065fea2d81b0a95"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyLockedDiary.TransparentTextEditor.makeUIView(context: SwiftUI.UIViewRepresentableContext&lt;MyLockedDiary.TransparentTextEditor&gt;) -&gt; __C.UITextView"
+                  moduleName = "MyLockedDiary"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Documents/gitHub/MyLocked%20Diary/MyLockedDiary/Screens/UIKit/TransparentTextEditor.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "420">
+               </Location>
+               <Location
+                  uuid = "8F0AB1CB-2928-46D3-9993-26AB34772EE8 - 6065fea2d81b0af4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyLockedDiary.TransparentTextEditor.makeUIView(context: SwiftUI.UIViewRepresentableContext&lt;MyLockedDiary.TransparentTextEditor&gt;) -&gt; __C.UITextView"
+                  moduleName = "MyLockedDiary"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Documents/gitHub/MyLocked%20Diary/MyLockedDiary/Screens/UIKit/TransparentTextEditor.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "420">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D346DFC3-81D4-49D1-9441-01240B2800FC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyLockedDiary/Screens/UIKit/TransparentTextEditor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "textView(_:shouldChangeTextIn:replacementText:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D346DFC3-81D4-49D1-9441-01240B2800FC - 92dbfe5859cccd53"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyLockedDiary.TransparentTextEditor.Coordinator.textView(_: __C.UITextView, shouldChangeTextIn: __C._NSRange, replacementText: Swift.String) -&gt; Swift.Bool"
+                  moduleName = "MyLockedDiary"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Documents/gitHub/MyLocked%20Diary/MyLockedDiary/Screens/UIKit/TransparentTextEditor.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "1184">
+               </Location>
+               <Location
+                  uuid = "D346DFC3-81D4-49D1-9441-01240B2800FC - 92dbfe5859cccd72"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyLockedDiary.TransparentTextEditor.Coordinator.textView(_: __C.UITextView, shouldChangeTextIn: __C._NSRange, replacementText: Swift.String) -&gt; Swift.Bool"
+                  moduleName = "MyLockedDiary"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Documents/gitHub/MyLocked%20Diary/MyLockedDiary/Screens/UIKit/TransparentTextEditor.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "924">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B6ECFDAF-BC1F-4E5B-B1CD-B93D8B81A51D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyLockedDiary/Screens/UIKit/TransparentTextEditor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "makeUIView(context:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "86B8135A-E0CA-4BDD-B28A-4DD4B44AC537"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyLockedDiary/Screens/AddingNewNoteScreen/AddingNewNoteScreen.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "308"
+            endingLineNumber = "308"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

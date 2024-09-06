@@ -76,6 +76,8 @@ class MainTabViewViewModel: ObservableObject {
         FeelingItem(emoji: "😷", name: "Unwell")
     ]
 
+    @Published var selectedList: SelectedList = .numbered
+    
     @Published var selectedEnergy: Color = .blue
     @Published var selectedFeeling: FeelingItem?
 
