@@ -20,27 +20,23 @@ struct TransparentTextEditor: UIViewRepresentable {
         textView.backgroundColor = .clear
         textView.font = UIFont.systemFont(ofSize: 17)
         textView.delegate = context.coordinator
-        switch isNumberingEnabled {
-            
-       case .numbered:
-            textView.text =  "   1. "
+        textView.attributedText = formattedString()
 
-        case .simpleNumbered:
-            break
-        case .star:
-            break
-        case .point:
-            break
-        case .heart:
-            break
-        case .greenPoint:
-            break
-        case .none:
-            break
-        }
         return textView
     }
+    func formattedString() -> NSAttributedString {
+        let listMarker = isNumberingEnabled.markForList // Get the attributed mark for the current case
 
+        // Create another string and set attributes to it
+        let text = NSAttributedString(string: " This is a sample text", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
+
+        // Combine the marker and the regular text
+        let combinedString = NSMutableAttributedString()
+        combinedString.append(listMarker)
+        combinedString.append(text)
+
+        return combinedString
+    }
     func updateUIView(_ uiView: UITextView, context: Context) {
         
         uiView.text = text
@@ -64,49 +60,145 @@ struct TransparentTextEditor: UIViewRepresentable {
         init(_ parent: TransparentTextEditor) {
             self.parent = parent
         }
-
         func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
             let nsText = textView.text as NSString
             let textBeforeCursor = nsText.substring(to: range.location)
             let lines = textBeforeCursor.components(separatedBy: "\n")
             let currentLine = lines.last ?? ""
-          
 
-            if parent.isNumberingEnabled == .numbered && text == "\n" {
-                if currentLine.trimmingCharacters(in: .whitespaces).isEmpty {
-                    parent.isNumberingEnabled = .none
-                    parent.itemCount = 1
-                    textView.text.append("\n")
+            // Handling numbering or bullet points based on the `isNumberingEnabled` case
+            if text == "\n" {
+                switch parent.isNumberingEnabled {
+                case .numbered:
+                    if currentLine.trimmingCharacters(in: .whitespaces).isEmpty {
+                        resetNumbering()
+                        textView.text.append("\n")
+                        parent.text = textView.text
+                        return false
+                    }
+
+                    if currentLine.trimmingCharacters(in: .whitespaces) == "\(parent.itemCount)." {
+                        resetNumbering()
+                        textView.text = nsText.replacingCharacters(in: NSRange(location: range.location - currentLine.count, length: currentLine.count), with: "")
+                        parent.text = textView.text
+                        return false
+                    }
+
+                    parent.itemCount += 1
+                    let newText = "   \(parent.itemCount). "
+                    textView.text = nsText.replacingCharacters(in: range, with: "\n\(newText)")
                     parent.text = textView.text
                     return false
-                }
 
-                if currentLine.trimmingCharacters(in: .whitespaces) == "\(parent.itemCount)." {
-                    textView.text = nsText.replacingCharacters(in: NSRange(location: range.location - currentLine.count, length: currentLine.count), with: "")
-                    parent.isNumberingEnabled = .none
-                    parent.itemCount = 1
+                case .simpleNumbered:
+                    if currentLine.trimmingCharacters(in: .whitespaces).isEmpty {
+                        resetNumbering()
+                        textView.text.append("\n")
+                        parent.text = textView.text
+                        return false
+                    }
+
+                    if currentLine.trimmingCharacters(in: .whitespaces) == "\(parent.itemCount))" {
+                        resetNumbering()
+                        textView.text = nsText.replacingCharacters(in: NSRange(location: range.location - currentLine.count, length: currentLine.count), with: "")
+                        parent.text = textView.text
+                        return false
+                    }
+
+                    parent.itemCount += 1
+                    let newText = "   \(parent.itemCount)) "
+                    textView.text = nsText.replacingCharacters(in: range, with: "\n\(newText)")
                     parent.text = textView.text
                     return false
-                }
-                if !currentLine.trimmingCharacters(in: .whitespaces).contains("\(parent.itemCount).") {
-                    let newText = "\n" + currentLine // Add a newline before the current line
-                    textView.text = nsText.replacingCharacters(in: NSRange(location: range.location - currentLine.count, length: currentLine.count), with: newText)
-                    parent.isNumberingEnabled = .none
-                    parent.itemCount = 1
+
+                case .star:
+                    if currentLine.trimmingCharacters(in: .whitespaces).isEmpty {
+                        resetNumbering()
+                        textView.text.append("\n")
+                        parent.text = textView.text
+                        return false
+                    }
+
+                    if currentLine.trimmingCharacters(in: .whitespaces) == "★" {
+                        resetNumbering()
+                        textView.text = nsText.replacingCharacters(in: NSRange(location: range.location - currentLine.count, length: currentLine.count), with: "")
+                        parent.text = textView.text
+                        return false
+                    }
+                    
+                    let newText = "\n   ★ "
+                    textView.text = nsText.replacingCharacters(in: range, with: newText)
                     parent.text = textView.text
                     return false
+
+                case .point:
+                    if currentLine.trimmingCharacters(in: .whitespaces).isEmpty {
+                        resetNumbering()
+                        textView.text.append("\n")
+                        parent.text = textView.text
+                        return false
+                    }
+                    if currentLine.trimmingCharacters(in: .whitespaces) == "●" {
+                        resetNumbering()
+                        textView.text = nsText.replacingCharacters(in: NSRange(location: range.location - currentLine.count, length: currentLine.count), with: "")
+                        parent.text = textView.text
+                        return false
+                    }
+                    let newText = "\n   ● "
+                    textView.text = nsText.replacingCharacters(in: range, with: newText)
+                    parent.text = textView.text
+                    return false
+
+                case .heart:
+                    if currentLine.trimmingCharacters(in: .whitespaces).isEmpty {
+                        resetNumbering()
+                        textView.text.append("\n")
+                        parent.text = textView.text
+                        return false
+                    }
+                    if currentLine.trimmingCharacters(in: .whitespaces) == "❤️" {
+                        resetNumbering()
+                        textView.text = nsText.replacingCharacters(in: NSRange(location: range.location - currentLine.count, length: currentLine.count), with: "")
+                        parent.text = textView.text
+                        return false
+                    }
+                    let newText = "\n   ❤️ "
+                    textView.text = nsText.replacingCharacters(in: range, with: newText)
+                    parent.text = textView.text
+                    return false
+
+                case .greenPoint:
+                    if currentLine.trimmingCharacters(in: .whitespaces).isEmpty {
+                        resetNumbering()
+                        textView.text.append("\n")
+                        parent.text = textView.text
+                        return false
+                    }
+                    if currentLine.trimmingCharacters(in: .whitespaces) == "🟢" {
+                        resetNumbering()
+                        textView.text = nsText.replacingCharacters(in: NSRange(location: range.location - currentLine.count, length: currentLine.count), with: "")
+                        parent.text = textView.text
+                        return false
+                    }
+                    let newText = "\n   🟢 "
+                    textView.text = nsText.replacingCharacters(in: range, with: newText)
+                    parent.text = textView.text
+                    return false
+
+                case .none:
+                    return true
                 }
-
-
-                parent.itemCount += 1
-                let newText = "   \(parent.itemCount). "
-                textView.text = nsText.replacingCharacters(in: range, with: "\n\(newText)")
-                parent.text = textView.text
-                return false
             }
 
             return true
         }
+
+        // Helper function to reset numbering when needed
+        private func resetNumbering() {
+            parent.isNumberingEnabled = .none
+            parent.itemCount = 1
+        }
+
         func textViewDidChange(_ textView: UITextView) {
             parent.text = textView.text
         }

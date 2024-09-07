@@ -35,6 +35,24 @@ enum SelectedList: CaseIterable, Identifiable {
             return "none"
         }
     }
+    var markForList: NSAttributedString {
+        switch self {
+        case .numbered:
+            return NSAttributedString(string: "1", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
+        case .simpleNumbered:
+            return NSAttributedString(string: "1)", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)])
+        case .star:
+            return NSAttributedString(string: "★", attributes: [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 20)!])
+        case .point:
+            return NSAttributedString(string: "●", attributes: [NSAttributedString.Key.font: UIFont(name: "Courier", size: 18)!])
+        case .heart:
+            return NSAttributedString(string: "❤️", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)])
+        case .greenPoint:
+            return NSAttributedString(string: "🟢", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)])
+        case .none:
+            return NSAttributedString(string: "none", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
+        }
+    }
 }
 
 struct KindOfListView: View {
@@ -60,24 +78,12 @@ struct KindOfListView: View {
                                 .border(selectedList == imageName && selectedList != .none ? viewModel.getSelectedColor() : Color.clear, width: 4) // Apply border
                                 .onTapGesture {
                                     selectedList = imageName // Set selected image in viewModel
+                                    dismiss()
                                 }
                         }
                     }
 
-//                    LazyVGrid(columns: columns, spacing: 16) {
-//                        ForEach(SelectedList.allCases, id: \.self) { imageName in
-//                            Image(imageName.imageName)
-//                                .resizable()
-//                                .frame(width: 100, height: 100)
-//                                .cornerRadius(10)
-//                            if viewModel.selectedList != .none {
-//                                .border(viewModel.selectedList == imageName ? viewModel.getSelectedColor() : Color.clear, width: 4) // Blue border if selected
-//                            }
-//                                .onTapGesture {
-//                                    viewModel.selectedList = imageName // Set selected image
-//                                }
-//                        }
-//                    }
+
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)

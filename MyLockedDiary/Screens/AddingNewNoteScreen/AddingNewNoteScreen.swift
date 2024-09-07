@@ -92,7 +92,7 @@ struct AddingNewNoteScreen: View {
                         .buttonStyle(PlainButtonStyle()) // This removes the default
                     }
                     ZStack {
-                        TransparentTextEditor(text: $noteText, isNumberingEnabled: $viewModel.selectedList, shouldFocus: $shouldFocus, font: viewModel.selectedFont ?? UIFont.systemFont(ofSize: 16), fontColor: viewModel.selectedFontColor!.color )
+                        TransparentTextEditor(text: $noteText, isNumberingEnabled: $isListInTextView, shouldFocus: $shouldFocus, font: viewModel.selectedFont ?? UIFont.systemFont(ofSize: 16), fontColor: viewModel.selectedFontColor!.color )
                         
                             .background(Color.secondary.opacity(0.3))
                             .cornerRadius(8)
@@ -293,7 +293,7 @@ struct AddingNewNoteScreen: View {
         })
         .onChange(of: isListInTextView, { oldValue, newValue in
             
-            if !(newValue == .numbered) {
+            if newValue == .none {
                 viewModel.selectedList = newValue
                 currentView = .none
                 noteText.append("\n")
@@ -303,8 +303,29 @@ struct AddingNewNoteScreen: View {
                 viewModel.selectedList = newValue
 
                 currentView = .none
-                
-                noteText.append("\n   1. ")
+                switch newValue {
+                    
+                case .numbered:
+                    noteText.append("\n   1. ")
+
+                case .simpleNumbered:
+                    noteText.append("\n   1) ")
+
+                case .star:
+                    noteText.append("\n   ★ ")
+                case .point:
+                    noteText.append("\n   ● ")
+
+                case .heart:
+                    noteText.append("\n   ❤️ ")
+
+                case .greenPoint:
+                    noteText.append("\n   🟢 ")
+
+                case .none:
+                    noteText.append("\n")
+
+                }
                 shouldFocus = true
             }
         })
