@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		180366B22C8D98D70074C20F /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180366B12C8D98D70074C20F /* Date.swift */; };
 		18094FD42C5DECF20057CB02 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18094FD32C5DECF20057CB02 /* View.swift */; };
 		18094FD62C5E5D1A0057CB02 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18094FD52C5E5D1A0057CB02 /* Color.swift */; };
 		180B8C4A2C70C44F0054F1CA /* AddingNewNoteScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180B8C492C70C44F0054F1CA /* AddingNewNoteScreen.swift */; };
@@ -55,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		180366B12C8D98D70074C20F /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		18094FD32C5DECF20057CB02 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		18094FD52C5E5D1A0057CB02 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		180B8C492C70C44F0054F1CA /* AddingNewNoteScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingNewNoteScreen.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			children = (
 				18094FD32C5DECF20057CB02 /* View.swift */,
 				18094FD52C5E5D1A0057CB02 /* Color.swift */,
+				180366B12C8D98D70074C20F /* Date.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -463,6 +466,7 @@
 				18094FD42C5DECF20057CB02 /* View.swift in Sources */,
 				1896F8FA2C82D82F00C7A342 /* SetBackgroundGridView.swift in Sources */,
 				18D916252C57F7E400796C37 /* ThemeModel.swift in Sources */,
+				180366B22C8D98D70074C20F /* Date.swift in Sources */,
 				18B21A482C724DC70031139C /* NoteView.swift in Sources */,
 				18BA3E9F2C6252AA00C2E61C /* Note.swift in Sources */,
 				18F7F78A2C5FC6BB00537E49 /* ProfileView.swift in Sources */,
