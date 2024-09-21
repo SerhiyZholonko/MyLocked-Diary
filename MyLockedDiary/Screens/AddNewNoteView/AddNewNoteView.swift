@@ -31,7 +31,7 @@ struct AddNewNoteView: View {
                         ZStack {
                             VStack(alignment: .leading) {
                                 HStack {
-                                    Text("12.08.2024")
+                                    Text(note.date.toString())
                                         .font(.body)
                                         .lineLimit(1)
                                         .truncationMode(.tail)

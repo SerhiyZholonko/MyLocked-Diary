@@ -17,7 +17,8 @@ struct MainTabView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             TabView(selection: $selectedTab) {
-                CalendarView()
+                CalendarHeaderView()
+                    .modelContainer(for: Note.self)
                     .environmentObject(viewModel)
                     .tag("1")
                 AddNewNoteView()

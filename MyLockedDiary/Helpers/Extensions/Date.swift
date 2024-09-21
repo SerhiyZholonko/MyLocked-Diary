@@ -8,6 +8,13 @@
 import Foundation
 
 extension Date {
+    func toString() -> String {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd.MM.yyyy"
+            return formatter.string(from: self)
+        }
+    
+    
     static var firstDayOfWeek = 2 // Monday
     static var capitalizedFirstLettersOfWeekdays: [String] {
         let calendar = Calendar.current

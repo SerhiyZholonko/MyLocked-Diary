@@ -35,6 +35,7 @@ struct AddingNewNoteScreen: View {
     @State private var selectedImage: UIImage?
     @State var noteTitle: String = ""
     @State var noteText: String = ""
+    @State var date = Date.now
     @State var currentEmoji: String = "smile"
     
     @State private var selectedItems: [PhotosPickerItem] = []
@@ -156,7 +157,11 @@ struct AddingNewNoteScreen: View {
                         
                     }
                     Button {
-                        let newNote = Note(title: noteTitle, noteText: noteText)
+                        let newNote = Note(
+                            title: noteTitle,
+                            noteText: noteText,
+                            date: date
+                        )
                         context.insert(newNote)
                         do {
                             try context.save()
@@ -164,6 +169,8 @@ struct AddingNewNoteScreen: View {
                         } catch {
                             print("Error saving note: \(error.localizedDescription)")
                             // You might want to show an alert to the user here
+//                            dismiss()
+
                         }
                     } label: {
                         Text("Create")
