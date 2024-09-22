@@ -33,11 +33,12 @@ struct AddingNewNoteScreen: View {
     @State private var isFeelingsThisDay: Bool = false
     
     @State private var selectedImage: UIImage?
-    @State var noteTitle: String = ""
-    @State var noteText: String = ""
-    @State var date = Date.now
-    @State var currentEmoji: String = "smile"
-    
+//    @State var noteTitle: String = ""
+//    @State var noteText: String = ""
+//    @State var date =  Date.now
+    //Calendar.current.date(byAdding: .day, value: -2, to: Date.now)!
+//    @State var currentEmoji: String = "smile"
+   
     @State private var selectedItems: [PhotosPickerItem] = []
     @State private var selectedImages: [UIImage] = []
     @State private var isDeleteButtomForImage: Bool = false
@@ -48,13 +49,23 @@ struct AddingNewNoteScreen: View {
     private var selectedFont: UIFont = UIFont.systemFont(ofSize: 17) // Default font
     
     
+    // Is edit
+    
+//    init(editNote: Note? = nil) {
+//        if let editNote = editNote {
+//            isEditView = true
+////            setEditNote(editNote)
+//        } else {
+//            isEditView = false
+//        }
+//    }
     var body: some View {
         ZStack {
             
             ScrollView {
                 Group {
                     HStack {
-                        TextField("Enter title", text: $noteTitle)
+                        TextField("Enter title", text: $viewModel.noteTitle)
                             .font(viewModel.selectedFont
                                   != nil ? Font(viewModel.selectedFont! as CTFont) : .system(size: 16)) // Apply font from viewModel if available
                             .foregroundColor(viewModel.selectedFontColor!.color)
@@ -66,7 +77,7 @@ struct AddingNewNoteScreen: View {
                                 .resizable()
                                 .frame(width: 32, height: 32)
                                 .padding(10)
-                                .background(viewModel.selectedEnergy)
+                                .background(viewModel.selectedEnergyColor)
                                 .cornerRadius(10)
                         }
                         .buttonStyle(PlainButtonStyle()) // This removes the default
@@ -80,8 +91,15 @@ struct AddingNewNoteScreen: View {
                                     .padding(10)
                                     .background(viewModel.getSelectedColor())
                                     .cornerRadius(10)
+                            } else if !viewModel.currentEmoji.isEmpty {
+                                Text(viewModel.currentEmoji)
+                                    .font(.system(size: 32))
+                                    .frame(width: 32, height: 32)
+                                    .padding(10)
+                                    .background(viewModel.getSelectedColor())
+                                    .cornerRadius(10)
                             } else {
-                                Image(currentEmoji)
+                                Image("smile")
                                     .resizable()
                                     .frame(width: 32, height: 32)
                                     .padding(10)
@@ -93,7 +111,7 @@ struct AddingNewNoteScreen: View {
                         .buttonStyle(PlainButtonStyle()) // This removes the default
                     }
                     ZStack {
-                        TransparentTextEditor(text: $noteText, isNumberingEnabled: $isListInTextView, shouldFocus: $shouldFocus, font: viewModel.selectedFont ?? UIFont.systemFont(ofSize: 16), fontColor: viewModel.selectedFontColor!.color )
+                        TransparentTextEditor(text: $viewModel.noteText, isNumberingEnabled: $isListInTextView, shouldFocus: $shouldFocus, font: viewModel.selectedFont ?? UIFont.systemFont(ofSize: 16), fontColor: viewModel.selectedFontColor!.color )
                         
                             .background(Color.secondary.opacity(0.3))
                             .cornerRadius(8)
@@ -135,6 +153,7 @@ struct AddingNewNoteScreen: View {
                                                     if let index = selectedImages.firstIndex(of: image) {
                                                         selectedImages.remove(at: index) // Remove the image on button tap
                                                     }
+                                                    viewModel.updateNode()
                                                 }) {
                                                     Image(systemName: "xmark.circle.fill")
                                                         .foregroundColor(.red)
@@ -158,13 +177,17 @@ struct AddingNewNoteScreen: View {
                     }
                     Button {
                         let newNote = Note(
-                            title: noteTitle,
-                            noteText: noteText,
-                            date: date
+                            title: viewModel.noteTitle,
+                            noteText:  viewModel.noteText,
+                            date: viewModel.date,
+                            energyColor: viewModel.selectedEnergyColor,
+                            energyImageName: viewModel.selectedEnergyImageName,
+                            emoji: viewModel.selectedFeeling?.emoji ?? ""
                         )
                         context.insert(newNote)
                         do {
                             try context.save()
+                            viewModel.updateNode()
                             dismiss()
                         } catch {
                             print("Error saving note: \(error.localizedDescription)")
@@ -173,12 +196,12 @@ struct AddingNewNoteScreen: View {
 
                         }
                     } label: {
-                        Text("Create")
+                        Text( viewModel.isEditView ? "Update" : "Create")
                     }
                     
                     .foregroundStyle(.black)
                     .tint(viewModel.getSelectedColor())
-                    .disabled(noteTitle.isEmpty || noteText.isEmpty)
+                    .disabled(viewModel.noteTitle.isEmpty || viewModel.noteText.isEmpty)
                     .buttonStyle(.borderedProminent)
 
                     
@@ -244,6 +267,7 @@ struct AddingNewNoteScreen: View {
             }
             Button {
                 dismiss()
+                viewModel.updateNode()
             } label: {
                 Image(systemName: "xmark")
                     .font(.system(size: 20, weight: .bold))
@@ -285,7 +309,8 @@ struct AddingNewNoteScreen: View {
         })
         .sheet(isPresented: $isFeelingsThisDay, content: {
             FeelingsThisDay(getImageName: { currentImageName in
-                currentEmoji = currentImageName
+                viewModel.currentEmoji = currentImageName
+              //  viewModel.selectedEmoji
                 isEmojiView.toggle()
             })
             .environmentObject(viewModel)
@@ -303,7 +328,7 @@ struct AddingNewNoteScreen: View {
             if newValue == .none {
                 viewModel.selectedList = newValue
                 currentView = .none
-                noteText.append("\n")
+                viewModel.noteText.append("\n")
                 shouldFocus = true
                 
             } else {
@@ -313,24 +338,24 @@ struct AddingNewNoteScreen: View {
                 switch newValue {
                     
                 case .numbered:
-                    noteText.append("\n   1. ")
+                    viewModel.noteText.append("\n   1. ")
 
                 case .simpleNumbered:
-                    noteText.append("\n   1) ")
+                    viewModel.noteText.append("\n   1) ")
 
                 case .star:
-                    noteText.append("\n   ★ ")
+                    viewModel.noteText.append("\n   ★ ")
                 case .point:
-                    noteText.append("\n   ● ")
+                    viewModel.noteText.append("\n   ● ")
 
                 case .heart:
-                    noteText.append("\n   ❤️ ")
+                    viewModel.noteText.append("\n   ❤️ ")
 
                 case .greenPoint:
-                    noteText.append("\n   🟢 ")
+                    viewModel.noteText.append("\n   🟢 ")
 
                 case .none:
-                    noteText.append("\n")
+                    viewModel.noteText.append("\n")
 
                 }
                 shouldFocus = true
@@ -367,11 +392,33 @@ struct AddingNewNoteScreen: View {
             }
         }
     }
+//    func setEditNote(_ note: Note) {
+////        @State var noteTitle: String = ""
+////        @State var noteText: String = ""
+////        @State var date =  Date.now
+////        //Calendar.current.date(byAdding: .day, value: -2, to: Date.now)!
+////        @State var currentEmoji: String = "smile"
+//        viewModel.noteTitle = note.title
+//        viewModel.noteText = note.noteText
+//        date = note.date
+////        viewModel.selectedEnergyColor = note.energyColor
+////        viewModel.selectedEnergyImageName = note.energyImageName
+//        currentEmoji = note.emoji
+//        
+//        
+//        
+//    }
 }
 
 #Preview {
     NavigationStack {
         AddingNewNoteScreen()
+//        editNote: Note( title: "String",
+//                                            noteText: "String",
+//                                            date: Date(),
+//                                            energyColor: .red,
+//                                            energyImageName: "String",
+//                                            emoji: "String")
             .environmentObject(MainTabViewViewModel())
     }
 }

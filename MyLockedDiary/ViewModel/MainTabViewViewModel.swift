@@ -20,6 +20,13 @@ struct FeelingItem: Identifiable {
     let name: String
 }
 class MainTabViewViewModel: ObservableObject {
+    @Published var isEditView: Bool = false
+
+    @Published var noteTitle: String = ""
+    @Published var noteText: String = ""
+    @Published var currentEmoji: String = ""
+    @Published var date =  Date.now
+    
     @Published var selectedFontName: FontName? = .default
     @Published var selectedFontSize: FontSize? = .h3
     @Published var selectedFontColor: FontColor? = .primary
@@ -78,13 +85,24 @@ class MainTabViewViewModel: ObservableObject {
 
     @Published var selectedList: SelectedList = .numbered
     
-    @Published var selectedEnergy: Color = .blue
+    @Published var selectedEnergyColor: Color = .blue
+    @Published var selectedEnergyImageName: String = ""
+    @Published var selectedEmoji: String = ""
     @Published var selectedFeeling: FeelingItem?
 
     var selectionIndex = 2
     let themeListImage: [ThemeModel] = [ThemeModel(bgImageName: "glacier", color: Color.orangeColors, imageName: "glacier"), ThemeModel(bgImageName:  "tree", color: Color.limeColors, imageName: "tree"), ThemeModel(bgImageName: "fantasy", color: Color.skyColors, imageName: "fantasy")]
     init() {
-        selectedEnergy = getSelectedColor()
+        selectedEnergyColor = getSelectedColor()
+    }
+    func updateNode() {
+         noteTitle = ""
+         noteText = ""
+        currentEmoji = ""
+        date =  Date.now
+        selectedEnergyColor = getSelectedColor()
+        selectedEnergyImageName = ""
+        selectedEmoji = ""
     }
     func getThemeBackgroundColor() -> Color {
         themeListImage[selectionIndex].color[1]
@@ -100,17 +118,7 @@ class MainTabViewViewModel: ObservableObject {
         themeListImage[selectionIndex].color[3]
 
     }
-    
-    //Add tag
-//    func addNewTag(_ newTag: String) {
-//        tags.append(newTag)
-//    }
-//    func addTagToSelected(_ tag: String) {
-//        selectedTags.append(tag)
-//    }
-    
-    
-    
+  
     func addTagToSelected(_ tag: String) {
         if selectedTags.contains(tag) {
             selectedTags.removeAll{$0 == tag} // Deselect if already selected

@@ -27,7 +27,8 @@ struct EnergyThisDay: View {
                                         .frame(height: 100)
                                         .cornerRadius(10)
                                         .onTapGesture {
-                                            viewModel.selectedEnergy = item.color
+                                            viewModel.selectedEnergyColor = item.color
+                                            viewModel.selectedEnergyImageName = item.sfSymbol
                                         }
                                     Image(systemName: item.sfSymbol)
                                         .resizable()
