@@ -12,7 +12,6 @@ import CoreData
 @main
 struct MyLockedDiaryApp: App {
     let persistenceController = PersistenceController.shared
-
         init() {
             let container = persistenceController.container
             // Remove the existing store to fix the schema mismatch error
@@ -20,7 +19,6 @@ struct MyLockedDiaryApp: App {
                 try? FileManager.default.removeItem(at: storeURL)
             }
             print("URL Data: ", URL.applicationSupportDirectory.path(percentEncoded: false))
-
         }
     var body: some Scene {
         WindowGroup {

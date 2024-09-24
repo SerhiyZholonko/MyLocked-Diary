@@ -45,7 +45,8 @@ struct AddingNewNoteScreen: View {
     
     @State private var currentView: NoteViewCase = .none
     
-    
+    @Query private var notes: [Note]
+
     private var selectedFont: UIFont = UIFont.systemFont(ofSize: 17) // Default font
     
     
@@ -184,18 +185,35 @@ struct AddingNewNoteScreen: View {
                             energyImageName: viewModel.selectedEnergyImageName,
                             emoji: viewModel.selectedFeeling?.emoji ?? ""
                         )
+
+                        // Find and delete the old note from the context if it exists
+                        if let oldNote = notes.first(where: { $0.date.toString() == newNote.date.toString() }) {
+                            context.delete(oldNote)
+                        }
+
+                        // Insert the new note
                         context.insert(newNote)
+
                         do {
                             try context.save()
                             viewModel.updateNode()
                             dismiss()
                         } catch {
                             print("Error saving note: \(error.localizedDescription)")
-                            // You might want to show an alert to the user here
-//                            dismiss()
-
                         }
-                    } label: {
+                    }
+//                        context.insert(newNote)
+//                        do {
+//                            try context.save()
+//                            viewModel.updateNode()
+//                            dismiss()
+//                        } catch {
+//                            print("Error saving note: \(error.localizedDescription)")
+//                            // You might want to show an alert to the user here
+////                            dismiss()
+//
+//                        }
+                    label: {
                         Text( viewModel.isEditView ? "Update" : "Create")
                     }
                     

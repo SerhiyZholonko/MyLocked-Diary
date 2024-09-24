@@ -46,10 +46,10 @@
             filePath = "MyLockedDiary/Screens/AddingNewNoteScreen/AddingNewNoteScreen.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "257"
-            endingLineNumber = "257"
-            landmarkName = "body"
-            landmarkType = "24">
+            startingLineNumber = "275"
+            endingLineNumber = "275"
+            landmarkName = "AddingNewNoteScreen"
+            landmarkType = "14">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -62,10 +62,10 @@
             filePath = "MyLockedDiary/Screens/AddingNewNoteScreen/AddingNewNoteScreen.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "343"
-            endingLineNumber = "343"
-            landmarkName = "body"
-            landmarkType = "24">
+            startingLineNumber = "361"
+            endingLineNumber = "361"
+            landmarkName = "AddingNewNoteScreen"
+            landmarkType = "14">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -78,10 +78,10 @@
             filePath = "MyLockedDiary/Screens/AddingNewNoteScreen/AddingNewNoteScreen.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "344"
-            endingLineNumber = "344"
-            landmarkName = "body"
-            landmarkType = "24">
+            startingLineNumber = "362"
+            endingLineNumber = "362"
+            landmarkName = "AddingNewNoteScreen"
+            landmarkType = "14">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -94,10 +94,10 @@
             filePath = "MyLockedDiary/Screens/AddingNewNoteScreen/AddingNewNoteScreen.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "341"
-            endingLineNumber = "341"
-            landmarkName = "body"
-            landmarkType = "24">
+            startingLineNumber = "359"
+            endingLineNumber = "359"
+            landmarkName = "AddingNewNoteScreen"
+            landmarkType = "14">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -110,10 +110,10 @@
             filePath = "MyLockedDiary/Screens/AddingNewNoteScreen/AddingNewNoteScreen.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "340"
-            endingLineNumber = "340"
-            landmarkName = "body"
-            landmarkType = "24">
+            startingLineNumber = "358"
+            endingLineNumber = "358"
+            landmarkName = "AddingNewNoteScreen"
+            landmarkType = "14">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -151,15 +151,31 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "2C350CBC-6D5E-45E8-B611-92BFC3F61F71"
+            uuid = "0B05E66D-852D-46B0-AF47-CA9493790A3D"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyLockedDiary/Screens/AddingNewNoteScreen/AddingNewNoteScreen.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "179"
-            endingLineNumber = "179"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7E2BABD3-D431-496D-A2D9-707EC95FEDCF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyLockedDiary/Screens/AddingNewNoteScreen/AddingNewNoteScreen.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>

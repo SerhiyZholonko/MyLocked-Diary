@@ -10,4 +10,4 @@ import SwiftData
 import SwiftUI
 
 
-typealias Note = NodeSchemaV3.Note
+typealias Note = NodeSchemaV4.Note

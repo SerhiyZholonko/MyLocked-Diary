@@ -98,6 +98,8 @@ struct AddNewNoteView: View {
                             
                                 AddingNewNoteScreen()
                                     .environmentObject(viewModel)
+//                                    .modelContainer(for: Note.self, inMemory: true)
+
 //                            }
                             }
                           

@@ -96,3 +96,39 @@ enum NodeSchemaV3: VersionedSchema {
         }
     }
 }
+
+
+enum NodeSchemaV4: VersionedSchema {
+    static var versionIdentifier: Schema.Version {
+        Schema.Version(4, 0, 0)  // Example version 1.0.0
+    }
+
+    static var models: [any PersistentModel.Type] {
+        [Note.self]
+    }
+
+    @Model
+    class Note: Identifiable {
+        var title: String
+        var noteText: String
+        var date: Date
+        var energyColor: String // Store the color as a hex string
+        var energyImageName: String
+        var emoji: String
+        init(
+            title: String,
+            noteText: String,
+            date: Date,
+            energyColor: Color,
+            energyImageName: String,
+            emoji: String
+        ) {
+            self.title = title
+            self.noteText = noteText
+            self.date = date
+            self.energyColor = energyColor.toHex() ?? "#000000" // Use a default value if conversion fails
+            self.energyImageName = energyImageName
+            self.emoji = emoji
+        }
+    }
+}
