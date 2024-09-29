@@ -19,8 +19,9 @@ struct AddNewNoteView: View {
     
     @State private var currentDetent: PresentationDetent = .fraction(1.0)
     
-    @State private var currentNote: Note?
+//    @State private var currentNote: Note?
     var body: some View {
+        NavigationStack {
         ZStack {
             VStack(spacing: 0) {
                 Image(viewModel.getHeaderImageName())
@@ -28,16 +29,26 @@ struct AddNewNoteView: View {
                     .frame(height: 200)
                 Color.clear
                     .frame(height: 5)
-                
-                List {
+                ScrollView {
                     ForEach(notes) { note in
-                        SingleNodeView(note: note, dividerColor: viewModel.getTintColor(), emojiBgColor: viewModel.getSelectedColor())
-                            .background(viewModel.getThemeBackgroundColor())
-                            .listRowInsets(EdgeInsets())
-                            .listRowSeparator(.hidden)
+                        NavigationLink(destination: NoteDetailScreen(note: note)
+//                            .environmentObject(viewModel)
+//                              .modelContainer(for: Note.self, inMemory: true)
+
+                        ) {
+                            SingleNodeView(note: note, dividerColor: viewModel.getTintColor(), emojiBgColor: viewModel.getSelectedColor())
+                                .environmentObject(viewModel)
+                                .background(viewModel.getThemeBackgroundColor())
+                                .listRowInsets(EdgeInsets())
+                                .listRowSeparator(.hidden)
+                                .onAppear {
+                                    viewModel.currentNote = note
+                                }
+                        }
+                        
                             .onTapGesture {
                                 viewModel.isEditView = true
-                                currentNote = note
+                                viewModel.currentNote = note
                                 viewModel.noteTitle = note.title
                                 viewModel.noteText = note.noteText
                                 viewModel.date = note.date
@@ -46,72 +57,74 @@ struct AddNewNoteView: View {
                                 viewModel.selectedEnergyColor = note.energyColor.toColor()
                                 showingEditNoteView.toggle()
                             }
-                        .swipeActions {
-                            Button(role: .destructive) {
-                                deleteNote(at: IndexSet(integer: notes.firstIndex(of: note)!))
-                            } label: {
-                                VStack {
-                                    Image(systemName: "trash")
+                            .swipeActions {
+                                Button(role: .destructive) {
+                                    deleteNote(at: IndexSet(integer: notes.firstIndex(of: note)!))
+                                } label: {
+                                    VStack {
+                                        Image(systemName: "trash")
+                                    }
+                                    
                                 }
-                                
                             }
-                        }
                     }
                 }
-                .listStyle(.plain)
+                .tint(.black)
                 .scrollContentBackground(.hidden)
-
+                
                 .background(viewModel.getThemeBackgroundColor())
                 .padding()
                 Spacer()
             }
             .background(viewModel.getThemeBackgroundColor())
-            
-            VStack {
-                Spacer()
-                HStack {
+            if !viewModel.checkIsNoteToDay(notes: notes) {
+                VStack {
                     Spacer()
-                    Button {
-                        viewModel.isEditView = false
-                        showingNewNoteView = true // Show the sheet
-                        
-                    } label: {
-                        Image(systemName: "plus.circle.fill")
-                            .renderingMode(.template)
-                            .resizable()
-                            .background(.white)
-                            .frame(width: 80, height: 80)
-                            .clipShape(Circle())
-                            .foregroundColor(viewModel.getSelectedColor())
-                            .shadow(color: .gray, radius: 14, x: 0, y: 2) // Add shadow
-                            .padding(.horizontal, 40)
-                    }
-                    .fullScreenCover(isPresented: $showingNewNoteView) {
-                        NavigationStack {
-                            AddingNewNoteScreen()
-                                .environmentObject(viewModel)
-                        }
-                    }
-                    .fullScreenCover(isPresented: $showingEditNoteView) {
-                        NavigationStack {
-//                            if let currentNote = currentNote {
+                    HStack {
+                        Spacer()
+                      
+                        Button {
+                            viewModel.isEditView = false
+                            showingNewNoteView = true // Show the sheet
                             
+                        } label: {
+                            Image(systemName: "plus.circle.fill")
+                                .renderingMode(.template)
+                                .resizable()
+                                .background(.white)
+                                .frame(width: 80, height: 80)
+                                .clipShape(Circle())
+                                .foregroundColor(viewModel.getSelectedColor())
+                                .shadow(color: .gray, radius: 14, x: 0, y: 2) // Add shadow
+                                .padding(.horizontal, 40)
+                        }
+                        .fullScreenCover(isPresented: $showingNewNoteView) {
+                            NavigationStack {
                                 AddingNewNoteScreen()
                                     .environmentObject(viewModel)
-//                                    .modelContainer(for: Note.self, inMemory: true)
-
-//                            }
                             }
-                          
+                        }
+                        .fullScreenCover(isPresented: $showingEditNoteView) {
+                            NavigationStack {
+                                //                            if let currentNote = currentNote {
+                                
+                                AddingNewNoteScreen()
+                                    .environmentObject(viewModel)
+                                
+                                //                            }
+                            }
+                            
+                        }
                     }
                 }
+                .offset(y: -100)
             }
-            .offset(y: -100)
+           
         }
         .background(viewModel.getThemeBackgroundColor())
-        .onAppear{
-            print("notes", notes.count)
-        }
+        
+    }
+        
     }
     
     func deleteNote(at offsets: IndexSet) {

@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct SingleNodeView: View {
-    
+    @EnvironmentObject var viewModel: MainTabViewViewModel
+
     private let note: Note
     private let dividerColor: Color
     private let emojiBgColor: Color
@@ -22,7 +23,6 @@ struct SingleNodeView: View {
             VStack(alignment: .leading) {
                 HStack {
                     Text(note.date.toString())
-                        .font(.body)
                         .lineLimit(1)
                         .truncationMode(.tail)
                         .padding(.leading, 16)
@@ -62,6 +62,9 @@ struct SingleNodeView: View {
                     .fill(dividerColor)  // Set your desired color
                      .frame(height: 3)  // Set the thickness
             }
+            .font(Font(viewModel.selectedFont))
+            .foregroundColor(viewModel.selectedFontColor?.color)
+
         }
     }
 }

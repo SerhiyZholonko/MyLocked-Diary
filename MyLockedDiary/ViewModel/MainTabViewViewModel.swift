@@ -20,6 +20,8 @@ struct FeelingItem: Identifiable {
     let name: String
 }
 class MainTabViewViewModel: ObservableObject {
+    @Published var currentNote: Note?
+    
     @Published var isEditView: Bool = false
 
     @Published var noteTitle: String = ""
@@ -134,6 +136,23 @@ class MainTabViewViewModel: ObservableObject {
     func addNewTag(_ tag: String) {
         if !tags.contains(tag) {
             tags.append(tag)
+        }
+    }
+    func checkIsNoteToDay(notes: [Note]) -> Bool {
+        let newNote = Note(
+            title: "",
+            noteText:  "",
+            date: Date.now,
+            energyColor: .red,
+            energyImageName: "",
+            emoji:  ""
+        )
+        
+        // Find and delete the old note from the context if it exists
+        if let _ = notes.first(where: { $0.date.toString() == newNote.date.toString() }) {
+            return true
+        } else {
+            return false
         }
     }
     

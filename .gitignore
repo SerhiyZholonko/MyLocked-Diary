@@ -1,0 +1,30 @@
+# Swift build artifacts
+.build/
+DerivedData/
+*.xcodeproj/project.xcworkspace/
+*.xcuserstate
+*.xcuserdata/
+
+# CocoaPods
+Pods/
+
+# Carthage
+Carthage/Build/
+
+# Swift Package Manager
+Packages/
+.package/
+
+# Xcode specific
+.idea/
+.xcuserstate
+*.hmap
+*.ipa
+*.dSYM/
+*.log
+
+# User-specific files
+*.swp
+*.swo
+.vscode/
+*.ds_store
