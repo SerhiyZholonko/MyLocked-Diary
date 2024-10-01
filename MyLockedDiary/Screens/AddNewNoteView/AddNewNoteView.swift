@@ -19,21 +19,61 @@ struct AddNewNoteView: View {
     
     @State private var currentDetent: PresentationDetent = .fraction(1.0)
     
-//    @State private var currentNote: Note?
+    
+    @State private var selectedMonth: String = Calendar.current.monthSymbols[Calendar.current.component(.month, from: Date()) - 1]
+    @State private var selectedYear: String = "\(Calendar.current.component(.year, from: Date()))"
+    @State private var searchText: String = ""
+
+       
+       let months = Calendar.current.monthSymbols
+       let years = Array(2023...Calendar.current.component(.year, from: Date())).map { "\($0)" }
+
+    var filteredNotes: [Note] {
+           notes.filter { note in
+               let noteMonth = DateFormatter().monthSymbols[Calendar.current.component(.month, from: note.date) - 1]
+               let noteYear = "\(Calendar.current.component(.year, from: note.date))"
+               let matchesSearch = searchText.isEmpty || note.title.localizedCaseInsensitiveContains(searchText)
+               return noteMonth == selectedMonth && noteYear == selectedYear && matchesSearch
+           }
+       }
+
+    
     var body: some View {
         NavigationStack {
         ZStack {
             VStack(spacing: 0) {
                 Image(viewModel.getHeaderImageName())
                     .resizable()
-                    .frame(height: 200)
+                    .frame(height: 100)
                 Color.clear
                     .frame(height: 5)
+                // Month Picker
+                HStack {
+                    Picker("Select Month", selection: $selectedMonth) {
+                        ForEach(months, id: \.self) { month in
+                            Text(month).tag(month)
+                        }
+                    }
+                    .padding()
+
+                    // Year Picker
+                    Picker("Select Year", selection: $selectedYear) {
+                        ForEach(years, id: \.self) { year in
+                            Text(year).tag(year)
+                        }
+                    }
+                }
+                // Search Field for title
+                          TextField("Search notes by title", text: $searchText)
+                              .textFieldStyle(RoundedBorderTextFieldStyle())
+                              .padding()
+
+                            .padding()
                 ScrollView {
-                    ForEach(notes) { note in
+                    ForEach(filteredNotes, id: \.id) { note in
+
                         NavigationLink(destination: NoteDetailScreen(note: note)
-//                            .environmentObject(viewModel)
-//                              .modelContainer(for: Note.self, inMemory: true)
+
 
                         ) {
                             SingleNodeView(note: note, dividerColor: viewModel.getTintColor(), emojiBgColor: viewModel.getSelectedColor())
@@ -106,12 +146,10 @@ struct AddNewNoteView: View {
                         }
                         .fullScreenCover(isPresented: $showingEditNoteView) {
                             NavigationStack {
-                                //                            if let currentNote = currentNote {
                                 
                                 AddingNewNoteScreen()
                                     .environmentObject(viewModel)
                                 
-                                //                            }
                             }
                             
                         }
