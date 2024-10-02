@@ -31,17 +31,26 @@ struct CalendarView: View {
                     if day.monthInt != date.monthInt {
                         Text("")
                     } else {
-                        Text(day.formatted(.dateTime.day()))
-                            .fontWeight(.bold)
-                            .foregroundStyle(.secondary)
-                            .frame(maxWidth: .infinity, minHeight: 40)
-                            .background(
-                                Circle()
-                                    .foregroundStyle(
-                                        getBackgroundColor(for: day)
-//                                            .opacity(0.3)
-                                    )
-                            )
+                        ZStack {
+                            Text(day.formatted(.dateTime.day()))
+                                .fontWeight(.bold)
+                                .foregroundStyle(.secondary)
+                                .frame(maxWidth: .infinity, minHeight: 40)
+                                .background(
+                                    Circle()
+                                        .foregroundStyle(getBackgroundColor(for: day))
+                                )
+                            
+                            // Small circle in the top-right corner
+                            if let emoji = getFeelingEmoji(for: day) {
+                                    Text(emoji)
+                                .frame(width: 20, height: 20)
+                                .foregroundStyle(.red)
+                                .offset(x: 15, y: -15) // Adjust these values as needed
+                               
+                            }
+
+                        }
                     }
                 }
             }
@@ -71,6 +80,12 @@ struct CalendarView: View {
         } else {
             return .blue.opacity(0.6)
         }
+    }
+    func getFeelingEmoji(for day: Date) -> String?{
+        if let note = notes.first(where: { $0.date.startOfDay == day.startOfDay }) {
+            return note.emoji
+        }
+        return nil
     }
 }
 

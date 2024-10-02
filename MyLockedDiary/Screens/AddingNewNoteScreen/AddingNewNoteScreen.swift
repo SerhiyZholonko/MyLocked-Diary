@@ -126,7 +126,6 @@ struct AddingNewNoteScreen: View {
                     }
                     if !selectedImages.isEmpty {
                         VStack {
-                            
                             ScrollView(.horizontal) {
                                 HStack(spacing: 10) { // Spacing between images
                                     ForEach(selectedImages, id: \.self) { image in
@@ -164,11 +163,9 @@ struct AddingNewNoteScreen: View {
                             .frame(height: 120) // Fixed height for the scroll view to fit images
                             .zIndex(2)
                         }
-                        
                     }
                     Button {
                         let newNote = Note(
-                            
                             title: viewModel.noteTitle,
                             noteText:  viewModel.noteText,
                             date: viewModel.date,
@@ -176,7 +173,6 @@ struct AddingNewNoteScreen: View {
                             energyImageName: viewModel.selectedEnergyImageName,
                             emoji: viewModel.currentNote?.emoji ?? ""
                         )
-                        
                         // Find and delete the old note from the context if it exists
                         if let oldNote = notes.first(where: { $0.date.toString() == newNote.date.toString() }) {
                             context.delete(oldNote)
@@ -202,26 +198,15 @@ struct AddingNewNoteScreen: View {
                     .tint(viewModel.getSelectedColor())
                     .disabled(viewModel.noteTitle.isEmpty || viewModel.noteText.isEmpty)
                     .buttonStyle(.borderedProminent)
-
-                    
-                    
-                    
                 }
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding(.horizontal)
-                
-                
-                
                 Spacer()
-                
-                
             }
             .onTapGesture {
                 hideKeyboard()
                 isDeleteButtomForImage = false
-
             }
-            
             VStack(alignment: .leading) {
                 Spacer()
                 AddNoteBottomView(dismissKeybourd: {
