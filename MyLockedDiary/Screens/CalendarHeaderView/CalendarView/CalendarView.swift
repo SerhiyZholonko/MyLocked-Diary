@@ -44,7 +44,7 @@ struct CalendarView: View {
                             // Small circle in the top-right corner
                             if let emoji = getFeelingEmoji(for: day) {
                                     Text(emoji)
-                                .frame(width: 20, height: 20)
+                                .frame(width: 22, height: 22)
                                 .foregroundStyle(.red)
                                 .offset(x: 15, y: -15) // Adjust these values as needed
                                

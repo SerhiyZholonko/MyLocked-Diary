@@ -74,6 +74,12 @@ struct AddingNewNoteScreen: View {
                         .buttonStyle(PlainButtonStyle()) // This removes the default
                         Button {
                             isFeelingsThisDay.toggle()
+//                            if let item = viewModel.selectedFeeling {
+//                                viewModel.selectedEmoji = item.emoji
+//                            }else if !viewModel.currentEmoji.isEmpty {
+//                                viewModel.selectedEmoji =  viewModel.currentEmoji
+//                            }
+                            
                         } label: {
                             if let item = viewModel.selectedFeeling {
                                 Text(item.emoji)
@@ -171,7 +177,7 @@ struct AddingNewNoteScreen: View {
                             date: viewModel.date,
                             energyColor: viewModel.selectedEnergyColor,
                             energyImageName: viewModel.selectedEnergyImageName,
-                            emoji: viewModel.currentNote?.emoji ?? ""
+                            emoji: viewModel.selectedFeeling!.emoji ?? ""
                         )
                         // Find and delete the old note from the context if it exists
                         if let oldNote = notes.first(where: { $0.date.toString() == newNote.date.toString() }) {
@@ -294,7 +300,8 @@ struct AddingNewNoteScreen: View {
         .sheet(isPresented: $isFeelingsThisDay, content: {
             FeelingsThisDay(getImageName: { currentImageName in
                 viewModel.currentEmoji = currentImageName
-              //  viewModel.selectedEmoji
+               viewModel.selectedEmoji = currentImageName
+                
                 isEmojiView.toggle()
             })
             .environmentObject(viewModel)
