@@ -63,11 +63,26 @@ struct AddNewNoteView: View {
                         }
                     }
                 }
-                // Search Field for title
-                          TextField("Search notes by title", text: $searchText)
-                              .textFieldStyle(RoundedBorderTextFieldStyle())
-                              .padding()
-
+//                // Search Field for title
+//                          TextField("Search notes by title", text: $searchText)
+//                              .textFieldStyle(RoundedBorderTextFieldStyle())
+//                              .padding()
+                HStack {
+                    Image(systemName: "magnifyingglass") // Add a search icon
+                        .foregroundColor(.gray)
+                    
+                    TextField("Search notes by title", text: $searchText)
+                        .padding(10) // Add padding inside the text field
+                        .background(Color(.systemGray6)) // Background color
+                        .cornerRadius(8) // Rounded corners
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color(.systemGray4), lineWidth: 1) // Border style
+                        )
+                        .padding(.horizontal) // Outer padding
+                }
+                .padding(.vertical, 10) // Optional: Adjust vertical padding if needed
+                .shadow(color: .gray.opacity(0.3), radius: 4, x: 0, y: 2) // Add shadow for better elevation
                             .padding()
                 ScrollView {
                     ForEach(filteredNotes, id: \.id) { note in
