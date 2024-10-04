@@ -44,7 +44,8 @@ struct NoteDetailScreen: View {
                     Text(currentNote.emoji)
                        
                 }
-                    .frame(width: 40, height: 40)            }
+                    .frame(width: 40, height: 40)
+            }
             HStack {
                 Text(currentNote.title)
                 Spacer()
@@ -78,7 +79,6 @@ struct NoteDetailScreen: View {
                                    currentNote = newNote // Update currentNote
                                }
                 .environmentObject(viewModel)
-//                .modelContainer(for: Note.self, inMemory: true)
             }
         }
         .toolbar {

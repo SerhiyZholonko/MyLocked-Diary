@@ -25,6 +25,14 @@
 		18B08D4E2CA46FE700F79C61 /* NoteDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B08D4D2CA46FE700F79C61 /* NoteDetailScreen.swift */; };
 		18B21A482C724DC70031139C /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B21A472C724DC70031139C /* NoteView.swift */; };
 		18BA3E9D2C624EEB00C2E61C /* TransparentTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BA3E9C2C624EEB00C2E61C /* TransparentTextEditor.swift */; };
+		18BF35182CAFD6950064E9E5 /* ThemeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BF35172CAFD6950064E9E5 /* ThemeView.swift */; };
+		18BF351A2CAFD7060064E9E5 /* TagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BF35192CAFD7060064E9E5 /* TagsView.swift */; };
+		18BF351C2CAFD75C0064E9E5 /* DiaryLockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BF351B2CAFD75C0064E9E5 /* DiaryLockView.swift */; };
+		18BF351E2CAFD7E70064E9E5 /* ICloudSyncView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BF351D2CAFD7E70064E9E5 /* ICloudSyncView.swift */; };
+		18BF35202CAFD8250064E9E5 /* ExportImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BF351F2CAFD8250064E9E5 /* ExportImportView.swift */; };
+		18BF35222CAFD95F0064E9E5 /* WidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BF35212CAFD95F0064E9E5 /* WidgetView.swift */; };
+		18BF35242CAFDA0B0064E9E5 /* ShareAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BF35232CAFDA0B0064E9E5 /* ShareAppView.swift */; };
+		18BF35262CAFDA290064E9E5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BF35252CAFDA290064E9E5 /* SettingsView.swift */; };
 		18C9B8E42CA02D28004CABEC /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C9B8E32CA02D28004CABEC /* String.swift */; };
 		18CAE6AF2C7DF9F800656837 /* AddNoteBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CAE6AE2C7DF9F800656837 /* AddNoteBottomView.swift */; };
 		18CD40622C86FD570031DAF2 /* SelectFontView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD40612C86FD570031DAF2 /* SelectFontView.swift */; };
@@ -79,6 +87,14 @@
 		18B08D4D2CA46FE700F79C61 /* NoteDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailScreen.swift; sourceTree = "<group>"; };
 		18B21A472C724DC70031139C /* NoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
 		18BA3E9C2C624EEB00C2E61C /* TransparentTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentTextEditor.swift; sourceTree = "<group>"; };
+		18BF35172CAFD6950064E9E5 /* ThemeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeView.swift; sourceTree = "<group>"; };
+		18BF35192CAFD7060064E9E5 /* TagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsView.swift; sourceTree = "<group>"; };
+		18BF351B2CAFD75C0064E9E5 /* DiaryLockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryLockView.swift; sourceTree = "<group>"; };
+		18BF351D2CAFD7E70064E9E5 /* ICloudSyncView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICloudSyncView.swift; sourceTree = "<group>"; };
+		18BF351F2CAFD8250064E9E5 /* ExportImportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportImportView.swift; sourceTree = "<group>"; };
+		18BF35212CAFD95F0064E9E5 /* WidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetView.swift; sourceTree = "<group>"; };
+		18BF35232CAFDA0B0064E9E5 /* ShareAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAppView.swift; sourceTree = "<group>"; };
+		18BF35252CAFDA290064E9E5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		18C9B8E32CA02D28004CABEC /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		18CAE6AE2C7DF9F800656837 /* AddNoteBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteBottomView.swift; sourceTree = "<group>"; };
 		18CD40612C86FD570031DAF2 /* SelectFontView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFontView.swift; sourceTree = "<group>"; };
@@ -185,6 +201,7 @@
 		1864C7F72C85B7E800FC6226 /* ProfileView */ = {
 			isa = PBXGroup;
 			children = (
+				18BF35162CAFD6770064E9E5 /* Views */,
 				18F7F7892C5FC6BB00537E49 /* ProfileView.swift */,
 			);
 			path = ProfileView;
@@ -253,6 +270,21 @@
 				18BA3E9C2C624EEB00C2E61C /* TransparentTextEditor.swift */,
 			);
 			path = UIKit;
+			sourceTree = "<group>";
+		};
+		18BF35162CAFD6770064E9E5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				18BF35172CAFD6950064E9E5 /* ThemeView.swift */,
+				18BF351B2CAFD75C0064E9E5 /* DiaryLockView.swift */,
+				18BF35192CAFD7060064E9E5 /* TagsView.swift */,
+				18BF351D2CAFD7E70064E9E5 /* ICloudSyncView.swift */,
+				18BF351F2CAFD8250064E9E5 /* ExportImportView.swift */,
+				18BF35212CAFD95F0064E9E5 /* WidgetView.swift */,
+				18BF35232CAFDA0B0064E9E5 /* ShareAppView.swift */,
+				18BF35252CAFDA290064E9E5 /* SettingsView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		18C9B8E22C9F3076004CABEC /* Cells */ = {
@@ -496,15 +528,21 @@
 			files = (
 				18DF83492C95AF12003345D9 /* Note.swift in Sources */,
 				1854E4CA2C8989F900427D03 /* FeelingsThisDay.swift in Sources */,
+				18BF351A2CAFD7060064E9E5 /* TagsView.swift in Sources */,
 				18F7F7882C5FC5A800537E49 /* CalendarView.swift in Sources */,
 				1857AD132C88275000F77C87 /* KindOfListView.swift in Sources */,
 				18CAE6AF2C7DF9F800656837 /* AddNoteBottomView.swift in Sources */,
+				18BF35262CAFDA290064E9E5 /* SettingsView.swift in Sources */,
+				18BF35202CAFD8250064E9E5 /* ExportImportView.swift in Sources */,
 				18B08D4E2CA46FE700F79C61 /* NoteDetailScreen.swift in Sources */,
 				18BA3E9D2C624EEB00C2E61C /* TransparentTextEditor.swift in Sources */,
+				18BF35222CAFD95F0064E9E5 /* WidgetView.swift in Sources */,
 				181C79AE2C5FA42C003BF4F4 /* MainTabViewViewModel.swift in Sources */,
 				18D915F52C57F5BE00796C37 /* ContentView.swift in Sources */,
 				181C79B02C5FBAD8003BF4F4 /* AddNewNoteView.swift in Sources */,
+				18BF351C2CAFD75C0064E9E5 /* DiaryLockView.swift in Sources */,
 				180B8C4A2C70C44F0054F1CA /* AddingNewNoteScreen.swift in Sources */,
+				18BF351E2CAFD7E70064E9E5 /* ICloudSyncView.swift in Sources */,
 				18775E2C2C8850A400F86A5C /* AddTagsView.swift in Sources */,
 				183A59FC2C9F0A12004638B6 /* SingleNodeView.swift in Sources */,
 				18856E0C2C834BD600949FCA /* EmojiCollectionView.swift in Sources */,
@@ -513,6 +551,7 @@
 				1854E4C82C8983C800427D03 /* EnergyThisDay.swift in Sources */,
 				181C79AA2C5F6DD6003BF4F4 /* MainTabView.swift in Sources */,
 				18D916222C57F63300796C37 /* ChooseYourDiaryTheme.swift in Sources */,
+				18BF35242CAFDA0B0064E9E5 /* ShareAppView.swift in Sources */,
 				18C9B8E42CA02D28004CABEC /* String.swift in Sources */,
 				18094FD62C5E5D1A0057CB02 /* Color.swift in Sources */,
 				18094FD42C5DECF20057CB02 /* View.swift in Sources */,
@@ -522,6 +561,7 @@
 				18B21A482C724DC70031139C /* NoteView.swift in Sources */,
 				18F7F78A2C5FC6BB00537E49 /* ProfileView.swift in Sources */,
 				189B94342C9573040015FEAF /* CalendarHeaderView.swift in Sources */,
+				18BF35182CAFD6950064E9E5 /* ThemeView.swift in Sources */,
 				18D915F32C57F5BE00796C37 /* MyLockedDiaryApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

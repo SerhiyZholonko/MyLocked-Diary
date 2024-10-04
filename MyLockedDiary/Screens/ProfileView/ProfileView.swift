@@ -19,69 +19,85 @@ struct ProfileView: View {
                 List {
                     // Profile Section
                     Section {
-                        NavigationLink(destination: Text("Profile")) {
+                        NavigationLink(destination:
+                                        Text("Profile")
+                            .environmentObject(viewModel)
+                        ) {
                             Text("Profile")
                         }
                         .listRowBackground(viewModel.getThemeBackgroundColor()) // Change to your desired color
 
-                        NavigationLink(destination: Text("Theme")) {
+                        NavigationLink(destination:
+                                        ThemeView()
+                                            .environmentObject(viewModel)
+
+                        ) {
                             Text("Theme")
                         }
                         .listRowBackground(viewModel.getThemeBackgroundColor()) // Change to your desired color
 
-                        NavigationLink(destination: Text("Tags")) {
+                        NavigationLink(destination:
+                                        TagsView()
+                                            .environmentObject(viewModel)
+                        ) {
                             Text("Tags")
                         }
                         .listRowBackground(viewModel.getThemeBackgroundColor()) // Change to your desired color
 
-                        NavigationLink(destination: Text("Diary Lock")) {
+                        NavigationLink(destination:
+                                        DiaryLockView()
+                                            .environmentObject(viewModel)
+                        ) {
                             Text("Diary Lock")
                         }
                         .listRowBackground(viewModel.getThemeBackgroundColor()) // Change to your desired color
 
-                        NavigationLink(destination: Text("iCloud Sync")) {
+                        NavigationLink(destination:
+                                        ICloudSyncView()
+                                           .environmentObject(viewModel)
+
+                        ) {
                             Text("iCloud Sync")
                         }
                         .listRowBackground(viewModel.getThemeBackgroundColor()) // Change to your desired color
 
-                        NavigationLink(destination: Text("Export & Import")) {
+                        NavigationLink(destination:
+                                        ExportImportView()
+                                            .environmentObject(viewModel)
+                        ) {
                             Text("Export & Import")
                         }
                         .listRowBackground(viewModel.getThemeBackgroundColor()) // Change to your desired color
 
-                        NavigationLink(destination: Text("Widget")) {
+                        NavigationLink(destination:
+                                        WidgetView()
+                                            .environmentObject(viewModel)
+
+                        ) {
                             Text("Widget")
                         }
                         .listRowBackground(viewModel.getThemeBackgroundColor()) // Change to your desired color
 
-                        NavigationLink(destination: Text("Share App")) {
+                        NavigationLink(destination:
+                                        ShareAppView()
+                                          .environmentObject(viewModel)
+                                  ) {
                             Text("Share App")
                         }
                         .listRowBackground(viewModel.getThemeBackgroundColor()) // Change to your desired color
 
-                        NavigationLink(destination: Text("Settings")) {
+                        NavigationLink(destination:
+                                        SettingsView()
+                        ) {
                             Text("Settings")
                         }
                         .listRowBackground(viewModel.getThemeBackgroundColor()) // Change to your desired color
-
-                        NavigationLink(destination: Text("Family Apps")) {
-                            Text("Family Apps")
-                        }
-                        .listRowBackground(viewModel.getThemeBackgroundColor()) // Change to your desired color
-
-                        NavigationLink(destination: Text("To-do List")) {
-                            Text("To-do List")
-                        }
-                        .listRowBackground(viewModel.getThemeBackgroundColor()) // Change to your desired color
-
                     }
                 }
                 .listStyle(PlainListStyle())
                 .scrollContentBackground(.hidden) // Ensures the List background is transparent
             }
-//            .background {
-//                viewModel.getThemeBackgroundColor() // Background color
-//            }
+
             .navigationTitle("Profile")
         }
 //        .background {
