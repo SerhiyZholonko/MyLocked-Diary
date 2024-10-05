@@ -28,11 +28,18 @@ class MainTabViewViewModel: ObservableObject {
     @Published var noteText: String = ""
     @Published var currentEmoji: String = ""
     @Published var date =  Date.now
-    
+//    @Published var imagesData: [UIImage] = []
+    @Published var selectedImages: [UIImage] = [] {
+        didSet {
+                print("selectedImages: ", selectedImages)
+        } 
+    } // Track selected images
+
     @Published var selectedFontName: FontName? = .default
     @Published var selectedFontSize: FontSize? = .h3
     @Published var selectedFontColor: FontColor? = .primary
     @Published var isAddTag: Bool = false
+    
     var selectedFont: UIFont! {
           guard let fontName = selectedFontName?.fontName, let fontSize = selectedFontSize?.fontValue else {
               return UIFont(name: ".SFUIText", size: 14)!
@@ -104,6 +111,7 @@ class MainTabViewViewModel: ObservableObject {
         date =  Date.now
         selectedEnergyColor = getSelectedColor()
         selectedEnergyImageName = ""
+        selectedImages = []
         selectedEmoji = ""
     }
     func getThemeBackgroundColor() -> Color {

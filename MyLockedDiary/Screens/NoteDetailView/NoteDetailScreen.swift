@@ -83,9 +83,14 @@ struct NoteDetailScreen: View {
         }
         .toolbar {
             Button {
-                print("delete note here")
                 context.delete(note)  // Delete the note from the context
-                dismiss()
+                   
+                   do {
+                       try context.save()  // Save the context to persist the deletion
+                       dismiss()  // Dismiss the view after deletion
+                   } catch {
+                       print("Failed to delete the note: \(error)")
+                   }
             } label: {
                 Image(systemName: "trash")
                     .font(.system(size: 20, weight: .bold))

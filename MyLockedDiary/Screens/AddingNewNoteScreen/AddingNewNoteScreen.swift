@@ -35,7 +35,7 @@ struct AddingNewNoteScreen: View {
     @State private var selectedImage: UIImage?
    
     @State private var selectedItems: [PhotosPickerItem] = []
-    @State private var selectedImages: [UIImage] = []
+//    @State private var selectedImages: [UIImage] = []
     @State private var isDeleteButtomForImage: Bool = false
     
     @State private var currentView: NoteViewCase = .none
@@ -130,11 +130,11 @@ struct AddingNewNoteScreen: View {
                             Spacer()
                         }
                     }
-                    if !selectedImages.isEmpty {
+                    if !viewModel.selectedImages.isEmpty {
                         VStack {
                             ScrollView(.horizontal) {
                                 HStack(spacing: 10) { // Spacing between images
-                                    ForEach(selectedImages, id: \.self) { image in
+                                    ForEach(viewModel.selectedImages, id: \.self) { image in
                                         ZStack(alignment: .topTrailing) {
                                             Image(uiImage: image)
                                                 .resizable()
@@ -146,8 +146,8 @@ struct AddingNewNoteScreen: View {
                                             
                                             if isDeleteButtomForImage {
                                                 Button(action: {
-                                                    if let index = selectedImages.firstIndex(of: image) {
-                                                        selectedImages.remove(at: index) // Remove the image on button tap
+                                                    if let index = viewModel.selectedImages.firstIndex(of: image) {
+                                                        viewModel.selectedImages.remove(at: index) // Remove the image on button tap
                                                     }
                                                     viewModel.updateNode()
                                                 }) {
@@ -177,7 +177,8 @@ struct AddingNewNoteScreen: View {
                             date: viewModel.date,
                             energyColor: viewModel.selectedEnergyColor,
                             energyImageName: viewModel.selectedEnergyImageName,
-                            emoji: viewModel.selectedFeeling!.emoji ?? ""
+                            imagesData: viewModel.selectedImages,
+                            emoji: viewModel.selectedFeeling?.emoji ?? ""
                         )
                         // Find and delete the old note from the context if it exists
                         if let oldNote = notes.first(where: { $0.date.toString() == newNote.date.toString() }) {
@@ -245,7 +246,7 @@ struct AddingNewNoteScreen: View {
         }
         
         .toolbar {
-            if !selectedImages.isEmpty {
+            if !viewModel.selectedImages.isEmpty {
                 Button {
                     isDeleteButtomForImage.toggle() // Toggle delete button on long press
                 } label: {
@@ -364,12 +365,12 @@ struct AddingNewNoteScreen: View {
         })
         
         .onChange(of: selectedItems) {  oldValue, newValue in
-            selectedImages.removeAll() // Clear previous images
+            viewModel.selectedImages.removeAll() // Clear previous images
             Task {
                 for item in newValue {
                     if let data = try? await item.loadTransferable(type: Data.self),
                        let uiImage = UIImage(data: data) {
-                        selectedImages.append(uiImage)
+                        viewModel.selectedImages.append(uiImage)
                     }
                 }
             }
@@ -383,7 +384,6 @@ struct AddingNewNoteScreen: View {
     }
 
 }
-
 
 
 

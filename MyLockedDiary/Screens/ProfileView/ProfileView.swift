@@ -19,18 +19,11 @@ struct ProfileView: View {
                 List {
                     // Profile Section
                     Section {
-                        NavigationLink(destination:
-                                        Text("Profile")
-                            .environmentObject(viewModel)
-                        ) {
-                            Text("Profile")
-                        }
-                        .listRowBackground(viewModel.getThemeBackgroundColor()) // Change to your desired color
+                       
 
                         NavigationLink(destination:
                                         ThemeView()
                                             .environmentObject(viewModel)
-
                         ) {
                             Text("Theme")
                         }
@@ -62,14 +55,6 @@ struct ProfileView: View {
                         .listRowBackground(viewModel.getThemeBackgroundColor()) // Change to your desired color
 
                         NavigationLink(destination:
-                                        ExportImportView()
-                                            .environmentObject(viewModel)
-                        ) {
-                            Text("Export & Import")
-                        }
-                        .listRowBackground(viewModel.getThemeBackgroundColor()) // Change to your desired color
-
-                        NavigationLink(destination:
                                         WidgetView()
                                             .environmentObject(viewModel)
 
@@ -86,12 +71,7 @@ struct ProfileView: View {
                         }
                         .listRowBackground(viewModel.getThemeBackgroundColor()) // Change to your desired color
 
-                        NavigationLink(destination:
-                                        SettingsView()
-                        ) {
-                            Text("Settings")
-                        }
-                        .listRowBackground(viewModel.getThemeBackgroundColor()) // Change to your desired color
+                      
                     }
                 }
                 .listStyle(PlainListStyle())

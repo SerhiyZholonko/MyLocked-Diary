@@ -114,6 +114,7 @@ enum NodeSchemaV4: VersionedSchema {
         var date: Date
         var energyColor: String // Store the color as a hex string
         var energyImageName: String
+        var imagesData: [Data]? // Store the array of images as binary data
         var emoji: String
         init(
             title: String,
@@ -121,6 +122,7 @@ enum NodeSchemaV4: VersionedSchema {
             date: Date,
             energyColor: Color,
             energyImageName: String,
+            imagesData: [UIImage]? = nil,
             emoji: String
         ) {
             self.title = title
@@ -128,6 +130,7 @@ enum NodeSchemaV4: VersionedSchema {
             self.date = date
             self.energyColor = energyColor.toHex() ?? "#000000" // Use a default value if conversion fails
             self.energyImageName = energyImageName
+            self.imagesData = imagesData?.compactMap { $0.pngData() }  // Convert each UIImage to Data
             self.emoji = emoji
         }
     }
