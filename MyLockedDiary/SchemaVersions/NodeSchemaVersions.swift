@@ -109,8 +109,10 @@ enum NodeSchemaV4: VersionedSchema {
 
     @Model
     class Note: Identifiable {
+        @Attribute(.unique) var id: UUID = UUID()
         var title: String
         var noteText: String
+        @Attribute(.preserveValueOnDeletion)
         var date: Date
         var energyColor: String // Store the color as a hex string
         var energyImageName: String

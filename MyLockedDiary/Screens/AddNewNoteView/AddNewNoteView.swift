@@ -12,6 +12,9 @@ struct AddNewNoteView: View {
     @Environment(\.modelContext) private var context
     @EnvironmentObject var viewModel: MainTabViewViewModel
     @Query private var notes: [Note]
+    @State private var cachedNotes: [Note] = []
+
+    //Problem with delay
     @State private var showingNewNoteView = false // State to control sheet presentation
     @State private var showingEditNoteView = false // State to control sheet presentation
 
@@ -28,14 +31,8 @@ struct AddNewNoteView: View {
        let months = Calendar.current.monthSymbols
        let years = Array(2023...Calendar.current.component(.year, from: Date())).map { "\($0)" }
 
-    var filteredNotes: [Note] {
-           notes.filter { note in
-               let noteMonth = DateFormatter().monthSymbols[Calendar.current.component(.month, from: note.date) - 1]
-               let noteYear = "\(Calendar.current.component(.year, from: note.date))"
-               let matchesSearch = searchText.isEmpty || note.title.localizedCaseInsensitiveContains(searchText)
-               return noteMonth == selectedMonth && noteYear == selectedYear && matchesSearch
-           }
-       }
+
+    @State private var filteredNotes: [Note] = []
 
     
     var body: some View {
@@ -63,10 +60,7 @@ struct AddNewNoteView: View {
                         }
                     }
                 }
-//                // Search Field for title
-//                          TextField("Search notes by title", text: $searchText)
-//                              .textFieldStyle(RoundedBorderTextFieldStyle())
-//                              .padding()
+
                 HStack {
                     Image(systemName: "magnifyingglass") // Add a search icon
                         .foregroundColor(.gray)
@@ -85,43 +79,18 @@ struct AddNewNoteView: View {
                 .shadow(color: .gray.opacity(0.3), radius: 4, x: 0, y: 2) // Add shadow for better elevation
                             .padding()
                 ScrollView {
-                    ForEach(filteredNotes, id: \.id) { note in
+                    ForEach(notes, id: \.id) { note in
 
-                        NavigationLink(destination: NoteDetailScreen(note: note)
-
-
-                        ) {
+                        NavigationLink(destination: NoteDetailScreen(note: note)) {
                             SingleNodeView(note: note, dividerColor: viewModel.getTintColor(), emojiBgColor: viewModel.getSelectedColor())
                                 .environmentObject(viewModel)
-                                .background(viewModel.getThemeBackgroundColor())
-                                .listRowInsets(EdgeInsets())
-                                .listRowSeparator(.hidden)
+
                                 .onAppear {
                                     viewModel.currentNote = note
                                 }
                         }
                         
-                            .onTapGesture {
-                                viewModel.isEditView = true
-                                viewModel.currentNote = note
-                                viewModel.noteTitle = note.title
-                                viewModel.noteText = note.noteText
-                                viewModel.date = note.date
-                                viewModel.currentEmoji = note.emoji
-                                viewModel.selectedEnergyImageName = note.energyImageName
-                                viewModel.selectedEnergyColor = note.energyColor.toColor()
-                                showingEditNoteView.toggle()
-                            }
-                            .swipeActions {
-                                Button(role: .destructive) {
-                                    deleteNote(at: IndexSet(integer: notes.firstIndex(of: note)!))
-                                } label: {
-                                    VStack {
-                                        Image(systemName: "trash")
-                                    }
-                                    
-                                }
-                            }
+
                     }
                 }
                 .tint(.black)
@@ -132,15 +101,18 @@ struct AddNewNoteView: View {
                 Spacer()
             }
             .background(viewModel.getThemeBackgroundColor())
-            if !viewModel.checkIsNoteToDay(notes: notes) {
+            if !viewModel.checkIsNoteToDay(notes: cachedNotes) {
                 VStack {
                     Spacer()
                     HStack {
                         Spacer()
                       
                         Button {
-                            viewModel.isEditView = false
-                            showingNewNoteView = true // Show the sheet
+                            DispatchQueue.main.async {
+                                
+//                                viewModel.isEditView = false
+                                showingNewNoteView.toggle() // Show the sheet
+                            }
                             
                         } label: {
                             Image(systemName: "plus.circle.fill")
@@ -177,23 +149,64 @@ struct AddNewNoteView: View {
         .background(viewModel.getThemeBackgroundColor())
         
     }
-        
+        .onChange(of: searchText) { oldValue, newValue in
+            DispatchQueue.main.async {
+                filterNotes()
+            }
+        }
+        .onAppear {
+            filterNotes()
+                updateNotesInViewModel()
+
+            if cachedNotes.isEmpty {
+                  cachedNotes = notes // Cache the notes only once
+                  filterNotes() // Update filtered notes based on cached notes
+              }
+        }
+        .onChange(of: searchText) { _, _ in
+            filterNotes() // Trigger filtering when search text changes
+        }
+        .onChange(of: selectedMonth) { _, _ in
+            filterNotes() // Trigger filtering when the month changes
+        }
+        .onChange(of: selectedYear) { _, _ in
+            filterNotes() // Trigger filtering when the year changes
+        }
+        .onChange(of: cachedNotes) { _, _ in
+            filterNotes() // Trigger filtering when the notes list changes
+        }
+    }
+    //MARK: - functions
+    func deleteNoteAsync(at offsets: IndexSet) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            for index in offsets {
+                let noteToDelete = cachedNotes[index]
+                context.delete(noteToDelete)
+            }
+            DispatchQueue.main.async {
+                do {
+                    try context.save()
+                } catch {
+                    print("Error deleting note: \(error.localizedDescription)")
+                }
+            }
+        }
+    }
+    func filterNotes() {
+        filteredNotes = cachedNotes.filter { note in
+            let noteMonth = DateFormatter().monthSymbols[Calendar.current.component(.month, from: note.date) - 1]
+            let noteYear = "\(Calendar.current.component(.year, from: note.date))"
+            let matchesSearch = searchText.isEmpty || note.title.localizedCaseInsensitiveContains(searchText)
+            return noteMonth == selectedMonth && noteYear == selectedYear && matchesSearch
+        }
+    }
+   func updateNotesInViewModel() {
+       DispatchQueue.main.async {
+           viewModel.notes = cachedNotes
+       }
     }
     
-    func deleteNote(at offsets: IndexSet) {
-        for index in offsets {
-            let noteToDelete = notes[index]
-            context.delete(noteToDelete)  // Delete the note from the context
-        }
-        
-        // Save the context after deleting the notes
-        do {
-            try context.save()
-        } catch {
-            print("Error deleting note: \(error.localizedDescription)")
-            // You could show an alert here to inform the user if needed
-        }
-    }
+
 }
 
 

@@ -55,17 +55,9 @@ struct SingleNodeView: View {
                 Divider()
 
                 Text(note.noteText)
-//                    .frame(width: UIScreen.main.bounds.width - 100)
                     .background(Color.clear)
                     .padding()
-                if let imageData = note.imagesData?.first, // Unwrap the optional Data
-                   let image = UIImage(data: imageData) {   // Create UIImage from Data
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 100, height: 100)
-                }
-//                    .border(Color.gray, width: 1)
+
                 Rectangle()
                     .fill(dividerColor)  // Set your desired color
                      .frame(height: 3)  // Set the thickness

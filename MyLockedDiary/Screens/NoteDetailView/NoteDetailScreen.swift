@@ -14,8 +14,6 @@ struct NoteDetailScreen: View {
     @EnvironmentObject var viewModel: MainTabViewViewModel
     @State private var showingEditNoteView = false
     @State private var currentNote: Note
-    @Query private var notes: [Note]
-
     private var note: Note
 
     init(note: Note) {
@@ -41,7 +39,8 @@ struct NoteDetailScreen: View {
                 ZStack {
                     Circle()
                         .fill(viewModel.getSelectedColor())
-                    Text(currentNote.emoji)
+//                    Text(currentNote.emoji)
+                    Text(viewModel.currentNote?.emoji ?? viewModel.currentEmoji)
                        
                 }
                     .frame(width: 40, height: 40)
@@ -54,6 +53,8 @@ struct NoteDetailScreen: View {
                 Text(currentNote.noteText)
                 Spacer()
             }
+           
+
             Spacer()
         }
         .font(Font(viewModel.selectedFont))
@@ -69,6 +70,15 @@ struct NoteDetailScreen: View {
             viewModel.currentEmoji = note.emoji
             viewModel.selectedEnergyImageName = note.energyImageName
             viewModel.selectedEnergyColor = note.energyColor.toColor()
+            viewModel.selectedImages = note.imagesData?.compactMap { data in
+                if let originalImage = UIImage(data: data) {
+                    // Compress the image (e.g., 0.5 for medium quality)
+                    if let compressedData = originalImage.jpegData(compressionQuality: 0.2) {
+                        return UIImage(data: compressedData)
+                    }
+                }
+                return nil
+            } ?? []
             showingEditNoteView.toggle()
         }
         .background(viewModel.getThemeBackgroundColor())
@@ -77,6 +87,7 @@ struct NoteDetailScreen: View {
                 AddingNewNoteScreen
                 { newNote in
                                    currentNote = newNote // Update currentNote
+                    dismiss()
                                }
                 .environmentObject(viewModel)
             }
@@ -108,6 +119,14 @@ struct NoteDetailScreen: View {
             }
         }
         .navigationBarBackButtonHidden(true)
+        .onAppear {
+            if let imagesData = currentNote.imagesData {
+                viewModel.selectedImages = imagesData.compactMap { UIImage(data: $0) }
+            } else {
+                viewModel.selectedImages = []
+            }
+            print("selectedImages NoteDetailScreen", viewModel.selectedImages)
+        }
 
     }
 }

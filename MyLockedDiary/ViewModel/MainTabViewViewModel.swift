@@ -19,21 +19,29 @@ struct FeelingItem: Identifiable {
     let emoji: String
     let name: String
 }
+@MainActor
 class MainTabViewViewModel: ObservableObject {
-    @Published var currentNote: Note?
+    @Published var notes: [Note] = []
+    
+    @Published var currentNote: Note?{
+        didSet {
+            noteTitle = currentNote?.title ?? ""  // Update noteTitle whenever currentNote changes
+            noteText = currentNote?.noteText ?? ""
+            currentEmoji = currentNote?.emoji ?? ""
+            date = currentNote?.date ?? Date.now
+            //energyColor
+            
+            selectedImages = currentNote?.imagesData?.compactMap { UIImage(data: $0) } ?? []
+        }
+    }
     
     @Published var isEditView: Bool = false
 
-    @Published var noteTitle: String = ""
+    @Published var noteTitle: String = ""  // This is a stored property
     @Published var noteText: String = ""
     @Published var currentEmoji: String = ""
     @Published var date =  Date.now
-//    @Published var imagesData: [UIImage] = []
-    @Published var selectedImages: [UIImage] = [] {
-        didSet {
-                print("selectedImages: ", selectedImages)
-        } 
-    } // Track selected images
+    @Published var selectedImages: [UIImage] = []
 
     @Published var selectedFontName: FontName? = .default
     @Published var selectedFontSize: FontSize? = .h3
@@ -116,6 +124,7 @@ class MainTabViewViewModel: ObservableObject {
     }
     func getThemeBackgroundColor() -> Color {
         themeListImage[selectionIndex].color[1]
+//        Color(.white)
     }
     func getTintColor() -> Color {
         themeListImage[selectionIndex].color[0]
